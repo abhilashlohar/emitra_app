@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Grievance</string>
+    <string name="showcase_main_title">Showcase Sample</string>
+    <string name="showcase_main_message">Press the button showcased to change the showcase\\\'s style</string>
+
+    <string name="submit">Submit</string>
+    <string name="go_settings">GO Settings</string>
+    <string name="internet_msg">Internet Connection Required.</string>
+    <string name="exit">Exit</string>
+    <string name="Edit">Edit</string>
+    <string name="Remove">Remove</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="showCaseSample">Show Case Sample</string>
+    <string name="hintUserName">User Name</string>
+    <string name="hintPassword">Password</string>
+    <string name="Login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="sign_up">New User ? Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="Name">Full Name</string>
+    <string name="Mobile">Mobile No.</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="Location">Location</string>
+    <string name="password_length">*password must be atleast 8 characters</string>
+    <string name="Notification">Notification</string>
+    <string name="Home">Home</string>
+</resources>

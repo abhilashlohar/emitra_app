@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "772143258643",
+    "firebase_url": "https://grievance-21782.firebaseio.com",
+    "project_id": "grievance-21782",
+    "storage_bucket": "grievance-21782.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772143258643:android:bbb99a425563770a",
+        "android_client_info": {
+          "package_name": "com.phppoets.grievance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772143258643-4gv22a3rihkeifvknggcrnqob7qpjq9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPvt9t1xfYfqtcSIDgx0tQi-54z_0kky8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
