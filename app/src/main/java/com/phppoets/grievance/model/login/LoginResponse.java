@@ -9,6 +9,7 @@ public class LoginResponse {
     @Expose
     private Result result;
 
+
     public Result getResult() {
         return result;
     }
