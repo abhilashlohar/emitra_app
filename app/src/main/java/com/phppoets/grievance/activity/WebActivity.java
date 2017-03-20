@@ -42,26 +42,12 @@ public class WebActivity extends BaseActivity
         }
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setAllowContentAccess(true);
-        settings.setAppCacheEnabled(true);
-        settings.setDatabaseEnabled(true);
-        settings.setDomStorageEnabled(true);
         settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         settings.setJavaScriptEnabled(true);
         settings.setSupportZoom(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setBuiltInZoomControls(true);
 
-        settings.setAppCacheEnabled(true);
-        settings.setAppCachePath(getCacheDir().getAbsolutePath());
-        settings.setDatabaseEnabled(true);
-        settings.setSupportMultipleWindows(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setUseWideViewPort(true);
-        settings.setDomStorageEnabled(true);
-        settings.setAllowContentAccess(true);
-        settings.setAllowFileAccess(true);
-        settings.setSaveFormData(true);
         webView.addJavascriptInterface(new WebViewJavaScriptInterface(this), "Android");
         webView.loadUrl("http://www.jeelwaterpark.com/grievance/grievances/paymentForm");
     }
@@ -152,6 +138,7 @@ public class WebActivity extends BaseActivity
         @JavascriptInterface
         public void showPDfToDownLoad(String pdfUrl)
         {
+            Log.d("url", pdfUrl);
             Intent intent = new Intent(WebActivity.this, PdfActivity.class);
             intent.putExtra("url", pdfUrl);
             startActivity(intent);

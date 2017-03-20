@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
 
+    android:id="@+id/main_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -27,16 +27,16 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:text="@string/Home"
+                android:text="@string/app_name"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,19 +46,21 @@
                     android:id="@+id/imgNotification"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
                     android:layout_toLeftOf="@+id/imgMore"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:src="@drawable/ic_notifications_none_black_24dp" />
+                    android:src="@drawable/ic_notifications_none_black_24dp"/>
 
                 <ImageView
                     android:id="@+id/imgMore"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
+
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:src="@drawable/ic_more_vert_black_24dp" />
+                    android:src="@drawable/ic_more_vert_black_24dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
 
@@ -102,7 +104,7 @@
                     android:layout_centerInParent="true"
                     android:text="@string/Payment"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
@@ -129,7 +131,7 @@
                     android:layout_centerInParent="true"
                     android:text="@string/Grievance"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 

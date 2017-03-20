@@ -82,6 +82,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
                 intent.putExtra("data", data);
                 intent.putExtra("id", id);
                 startActivity(intent);
+                finish();
             }
         });
         rvPaymentDetail = (RecyclerView) findViewById(R.id.rvPaymentDetail);
@@ -121,7 +122,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     fetchDetailResult = response.body();
                     makePayment.setEnabled(true);
-                    Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
+                    //Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
                     if (fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null) {
                         card_view.setVisibility(View.VISIBLE);
                         transactionDetails = fetchDetailResult.getResult().getFetchDetails().getTransactionDetails();

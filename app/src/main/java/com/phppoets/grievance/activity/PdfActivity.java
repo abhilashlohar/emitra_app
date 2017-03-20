@@ -84,6 +84,7 @@ public class PdfActivity extends AppCompatActivity
         wv.setScrollbarFadingEnabled(false);
         wv.setBackgroundColor(Color.WHITE);
         pdfUrl = getIntent().getStringExtra("url");
+        wv.loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdfUrl);
         //handleDeepLink(data);
         setFonts();
         imageViewBack.setOnClickListener(new View.OnClickListener()

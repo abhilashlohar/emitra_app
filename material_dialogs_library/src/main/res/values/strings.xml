@@ -2,6 +2,7 @@
 <resources>
 
     <string name="decline">Decline</string>
+    <string name="payment_status">Payment Status</string>
     <string name="accept">Accept</string>
     <string name="more_info">More Info</string>
 

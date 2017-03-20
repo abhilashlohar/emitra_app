@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout android:id="@+id/coordinatorLayout"
+                                                 xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <RelativeLayout android:id="@+id/main_content"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
 
         <android.support.design.widget.AppBarLayout
@@ -34,16 +34,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_arrow_back_black_24dp" />
+                    android:src="@drawable/ic_arrow_back_black_24dp"/>
 
                 <TextView
                     android:id="@+id/textViewHead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
-                    android:text="@string/accept"
+                    android:text="@string/payment_status"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
@@ -85,7 +85,8 @@
                             android:elevation="3dp"
                             android:text="@string/accept"
                             android:textColor="@color/title"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:visibility="gone"/>
 
                         <TextView
                             android:id="@+id/textViewName"
@@ -94,7 +95,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginTop="10dp"
                             android:layout_toRightOf="@id/txtStudentName"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"/>
 
                         <WebView
                             android:id="@+id/webView"
@@ -102,7 +103,7 @@
                             android:layout_height="match_parent"
                             android:layout_below="@+id/textViewName"
                             android:background="@color/white"
-                            android:padding="5dp" />
+                            android:padding="5dp"/>
                     </RelativeLayout>
 
 
@@ -140,16 +141,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:layout_marginTop="5dp">
+                                android:layout_marginTop="5dp"
+                                android:visibility="invisible">
 
                                 <TextView
                                     android:id="@+id/txtLastUpdated"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="@string/accept"
+                                    android:text="@string/payment_status"
                                     android:textColor="@color/title"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"/>
 
                                 <TextView
                                     android:id="@+id/txtDate"
@@ -160,7 +162,7 @@
                                     android:paddingBottom="5dp"
                                     android:textColor="@color/title"
                                     android:textSize="15sp"
-                                    tools:text="@string/accept" />
+                                    tools:text="@string/payment_status"/>
 
                             </RelativeLayout>
 
@@ -189,7 +191,7 @@
                                     android:layout_marginTop="15dp"
                                     android:text="@string/download_pdf"
                                     android:textColor="@color/title"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"/>
 
                                 <ImageView
                                     android:id="@+id/imgCloud"
@@ -198,7 +200,7 @@
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="15dp"
                                     android:layout_toRightOf="@id/txtDownloadPdf"
-                                    android:src="@drawable/cloud" />
+                                    android:src="@drawable/cloud"/>
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
