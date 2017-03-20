@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
 
-    android:id="@+id/main_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -27,16 +27,16 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:text="@string/app_name"
+                android:text="@string/Home"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,21 +46,20 @@
                     android:id="@+id/imgNotification"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
                     android:layout_toLeftOf="@+id/imgMore"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:src="@drawable/ic_notifications_none_black_24dp"/>
+                    android:src="@drawable/ic_notifications_none_black_24dp" />
 
                 <ImageView
                     android:id="@+id/imgMore"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-
+                    android:layout_alignParentRight="true"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:src="@drawable/ic_more_vert_black_24dp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </RelativeLayout>
 
 
@@ -68,74 +67,133 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <LinearLayout
-        android:id="@+id/home"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@color/white"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cvPayment"
+        <LinearLayout
+            android:id="@+id/home"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="25dp"
-            android:elevation="3dp">
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-            <RelativeLayout
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvPaymentService"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="120dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="25dp"
+                android:elevation="3dp">
 
-                <TextView
-                    android:id="@+id/txtPayment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/Payment"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"/>
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/txtPaymentService"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/Payment"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </RelativeLayout>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cvGrievance"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="25dp"
-            android:elevation="3dp">
+            </android.support.v7.widget.CardView>
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvPaymentHistroy"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="120dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="25dp"
+                android:elevation="3dp">
 
-                <TextView
-                    android:id="@+id/txtGrievance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/Grievance"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"/>
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtPaymentHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/PaymentHistroy"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvGrievanceServices"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="25dp"
+                android:elevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txtGrievanceServices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/GrievanceServices"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvGrievanceHistroy"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="25dp"
+                android:elevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txtGrievanceHistroy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/GrievanceHistroy"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>
 
