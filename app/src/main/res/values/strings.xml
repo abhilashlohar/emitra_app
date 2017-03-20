@@ -42,7 +42,7 @@
     <string name="Department">Department</string>
     <string name="Grievance_Form">Grievance_Form</string>
     <string name="SubDepartment">Sub Department</string>
-    <string name="Payment">Payment</string>
+    <string name="Payment">Payment Services</string>
     <string name="Grievance">Grievance</string>
     <string name="Payment_Detail">Payment Detail</string>
     <string name="PNR">PNR :</string>
@@ -50,5 +50,9 @@
     <string name="Make_Payment">Make Payment</string>
     <string name="NoRecordsFound">No Records Found</string>
     <string name="select_payment_service">Select Payment Service</string>
+    <string name="PaymentHistroy">Payment History</string>
+    <string name="GrievanceServices">Grievance Services</string>
+    <string name="GrievanceHistroy">Grievance Histroy</string>
+    <string name="noDataFound">No Data Found</string>
 
 </resources>

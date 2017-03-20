@@ -19,6 +19,7 @@ import com.phppoets.grievance.R;
 import com.phppoets.grievance.adapter.BillDetailAdapter;
 import com.phppoets.grievance.model.notification.fetchdetail.BillDetail;
 import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
+import com.phppoets.grievance.model.notification.fetchdetail.Result;
 import com.phppoets.grievance.model.notification.fetchdetail.TransactionDetails;
 import com.phppoets.grievance.rest.RestClient;
 import com.phppoets.grievance.support.UIUtils;
@@ -35,6 +36,7 @@ import retrofit2.Response;
  */
 public class PaymentDetailActivity extends AppCompatActivity {
     FetchDetailResult fetchDetailResult;
+    Result result;
     TransactionDetails transactionDetails;
     String id, data;
     TextView txtPNRNo, txtAmountShow, txtUsername, txtMobile, txtPurpose, txtTimestamp, txtEmail;
@@ -82,7 +84,6 @@ public class PaymentDetailActivity extends AppCompatActivity {
                 intent.putExtra("data", data);
                 intent.putExtra("id", id);
                 startActivity(intent);
-                finish();
             }
         });
         rvPaymentDetail = (RecyclerView) findViewById(R.id.rvPaymentDetail);
@@ -121,32 +122,39 @@ public class PaymentDetailActivity extends AppCompatActivity {
                     // dialog.dismiss();
                     progressBar.setVisibility(View.GONE);
                     fetchDetailResult = response.body();
-                    makePayment.setEnabled(true);
-                    //Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
-                    if (fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null) {
-                        card_view.setVisibility(View.VISIBLE);
-                        transactionDetails = fetchDetailResult.getResult().getFetchDetails().getTransactionDetails();
-                        txtPNRNo.setText(transactionDetails.getLookUpId());
-                        txtAmountShow.setText(transactionDetails.getBillAmount());
-                        txtEmail.setText("vaibhav@gmail.com");
-                        txtMobile.setText(transactionDetails.getConsumerKeysValues());
-                        txtUsername.setText(transactionDetails.getConsumerName());
-                        txtPurpose.setText(transactionDetails.getServiceName());
-                        if (fetchDetailResult.getResult().getFetchDetails().getBillDetails() != null) {
-                            billDetailList = fetchDetailResult.getResult().getFetchDetails().getBillDetails();
-                            billDetailAdapter = new BillDetailAdapter(PaymentDetailActivity.this, billDetailList);
-                            rvPaymentDetail.setAdapter(billDetailAdapter);
+
+                    Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
+                    result = fetchDetailResult.getResult();
+                    if (result != null) {
+                        if (fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null) {
+                            card_view.setVisibility(View.VISIBLE);
+                            makePayment.setVisibility(View.VISIBLE);
+                            transactionDetails = fetchDetailResult.getResult().getFetchDetails().getTransactionDetails();
+                            txtPNRNo.setText(transactionDetails.getLookUpId());
+                            txtAmountShow.setText(transactionDetails.getBillAmount());
+                            txtEmail.setText("vaibhav@gmail.com");
+                            txtMobile.setText(transactionDetails.getConsumerKeysValues());
+                            txtUsername.setText(transactionDetails.getConsumerName());
+                            txtPurpose.setText(transactionDetails.getServiceName());
+                            if (fetchDetailResult.getResult().getFetchDetails().getBillDetails() != null) {
+                                billDetailList = fetchDetailResult.getResult().getFetchDetails().getBillDetails();
+                                billDetailAdapter = new BillDetailAdapter(PaymentDetailActivity.this, billDetailList);
+                                rvPaymentDetail.setAdapter(billDetailAdapter);
+                            } else {
+
+                            }
+
+                        } else {
+                            // response received but request not successful (like 400,401,403 etc)
+                            //Handle error
+                            Log.d("PaymentDetailActivity", "Error Code = " + "errors");
+
                         }
                     } else {
                         txtNoRecordsFound.setVisibility(View.VISIBLE);
+                        card_view.setVisibility(View.GONE);
+                        //UIUtils.showOkAlertDialog(PaymentDetailActivity.this,getString(R.string.app_name),getString(R.string.noDataFound));
                     }
-
-
-                } else {
-                    // response received but request not successful (like 400,401,403 etc)
-                    //Handle error
-                    Log.d("PaymentDetailActivity", "Error Code = " + "errors");
-
                 }
             }
 

@@ -111,7 +111,6 @@
                         android:textColorHint="@color/darkGrey"
                         android:textSize="14sp">
 
-                        <requestFocus />
                     </AutoCompleteTextView>
                 </android.support.design.widget.TextInputLayout>
 
@@ -143,7 +142,7 @@
                         android:textColorHint="@color/darkGrey"
                         android:textSize="14sp">
 
-                        <requestFocus />
+
                     </AutoCompleteTextView>
                 </android.support.design.widget.TextInputLayout>
 

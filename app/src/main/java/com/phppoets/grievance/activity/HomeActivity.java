@@ -14,8 +14,8 @@ import com.phppoets.grievance.utility.TSTypeface;
 
 public class HomeActivity extends AppCompatActivity {
     ImageView imgNotification, imgMore;
-    CardView cvPayment, cvGrievance;
-    TextView txtGrievance, txtPayment;
+    CardView cvPaymentService, cvPaymentHistroy, cvGrievanceServices, cvGrievanceHistroy;
+    TextView txtGrievanceServices, txtPaymentService, txtPaymentHistory, txtGrievanceHistroy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,19 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         imgNotification = (ImageView) findViewById(R.id.imgNotification);
         imgMore = (ImageView) findViewById(R.id.imgMore);
-        cvPayment = (CardView) findViewById(R.id.cvPayment);
-        cvGrievance = (CardView) findViewById(R.id.cvGrievance);
-        txtGrievance = (TextView) findViewById(R.id.txtGrievance);
-        txtPayment = (TextView) findViewById(R.id.txtPayment);
-        txtGrievance.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
-        txtPayment.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
+        cvPaymentService = (CardView) findViewById(R.id.cvPaymentService);
+        cvGrievanceServices = (CardView) findViewById(R.id.cvGrievanceServices);
+        cvPaymentHistroy = (CardView) findViewById(R.id.cvPaymentHistroy);
+        cvGrievanceHistroy = (CardView) findViewById(R.id.cvGrievanceHistroy);
+        txtGrievanceServices = (TextView) findViewById(R.id.txtGrievanceServices);
+        txtPaymentService = (TextView) findViewById(R.id.txtPaymentService);
+        txtPaymentHistory = (TextView) findViewById(R.id.txtPaymentHistory);
+        txtGrievanceHistroy = (TextView) findViewById(R.id.txtGrievanceHistroy);
+
+        txtGrievanceServices.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
+        txtPaymentService.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
+        txtPaymentHistory.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
+        txtGrievanceHistroy.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
         imgNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,16 +49,30 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, PdfActivity.class));
             }
         });
-        cvGrievance.setOnClickListener(new View.OnClickListener() {
+        cvGrievanceServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, GrievanceFormActivity.class));
             }
         });
-        cvPayment.setOnClickListener(new View.OnClickListener() {
+        cvPaymentService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, PaymentListActivity.class));
+            }
+        });
+
+        cvGrievanceHistroy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        cvPaymentHistroy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

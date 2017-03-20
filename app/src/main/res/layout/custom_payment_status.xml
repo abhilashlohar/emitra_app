@@ -232,9 +232,9 @@
 
             android:layout_marginTop="20dp"
             android:background="@color/colorPrimary"
-            android:enabled="false"
             android:text="@string/Make_Payment"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 
