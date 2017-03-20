@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.phppoets.grievance">
+<manifest package="com.phppoets.grievance"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name=".application.MyApplication"
@@ -58,10 +58,13 @@
             android:name=".activity.GrievanceFormActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PaymentDetailActivity"
+            android:name=".activity.PaymentListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".activity.PaymentStatusActivity"
+            android:name=".activity.PaymentDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.WebActivity"
             android:screenOrientation="portrait" />
     </application>
 

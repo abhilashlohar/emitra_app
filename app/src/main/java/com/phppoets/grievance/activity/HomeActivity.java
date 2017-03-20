@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         cvPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, PaymentDetailActivity.class));
+                startActivity(new Intent(HomeActivity.this, PaymentListActivity.class));
             }
         });
     }

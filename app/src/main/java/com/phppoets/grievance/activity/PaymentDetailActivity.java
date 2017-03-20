@@ -1,47 +1,140 @@
 package com.phppoets.grievance.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.phppoets.grievance.R;
-import com.phppoets.grievance.adapter.PaymentDetailAdapter;
-import com.phppoets.grievance.model.payment.PaymentService;
+import com.phppoets.grievance.adapter.BillDetailAdapter;
+import com.phppoets.grievance.model.notification.fetchdetail.BillDetail;
+import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
+import com.phppoets.grievance.model.notification.fetchdetail.TransactionDetails;
+import com.phppoets.grievance.rest.RestClient;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentDetailActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+/**
+ * Created by user on 3/20/2017.
+ */
+public class PaymentDetailActivity extends AppCompatActivity
+{
+    FetchDetailResult fetchDetailResult;
+    TransactionDetails transactionDetails;
+    String id, data;
+    TextView txtPNRNo, txtAmountShow, txtUsername, txtMobile, txtPurpose, txtTimestamp, txtEmail;
     RecyclerView rvPaymentDetail;
-    // String payments[] = {"a", "b", "c", "d", "e", "f", "g"};
-    String serviceName[] = {"Airtel Mobile Bill Postpaid", "Idea Mobile Postpaid Bill", "Idea Mobile Postpaid Bill", "Vodafone Mobile Postpaid Bill", "Phed Water Bill", "BSNL Mobile Postpaid Bill"};
-    String serviceId[] = {"1214", "1220", "1216", "1219", "1807", "1222"};
-    String sampleDataDec[] = {"{\"SRVID\":\"1214\",\"searchKey\":\"9352423664\",\"SSOID\":\"SSOTESTKIOSK\"}", "{\"SRVID\":\"1220\",\"searchKey\":\"8440042182\",\"SSOID\":\"SSOTESTKIOSK\"}",
-            "{\"SRVID\":\"1216\",\"searchKey\":\"8432926694\",\"SSOID\":\"SSOTESTKIOSK\"}", "{\"SRVID\":\"1219\",\"searchKey\":\"998234559\",\"SSOID\":\"SSOTESTKIOSK\"}"
-            , "{\"SRVID\":\"1807\",\"searchKey\":\"16-14062- 04535\",\"SSOID\":\"SSOTESTKIOSK\"}", "{\"SRVID\":\"1222\",\"searchKey\":\"9530084675\",\"SSOID\":\"SSOTESTKIOSK\"}"};
-    List<PaymentService> paymentList;
-    PaymentDetailAdapter paymentDetailAdapter;
-    PaymentService paymentService;
+    BillDetailAdapter billDetailAdapter;
+    BillDetail billDetail;
+    List<BillDetail> billDetailList;
+    CardView card_view;
+    Button makePayment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(
+            @Nullable
+            Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_detail);
-        paymentList = new ArrayList<PaymentService>();
+        setContentView(R.layout.custom_payment_status);
+        card_view = (CardView) findViewById(R.id.card_view);
+        txtPNRNo = (TextView) findViewById(R.id.txtPNRNo);
+        txtAmountShow = (TextView) findViewById(R.id.txtAmountShow);
+        txtUsername = (TextView) findViewById(R.id.txtUsername);
+        txtMobile = (TextView) findViewById(R.id.txtMobile);
+        txtPurpose = (TextView) findViewById(R.id.txtPurpose);
+        txtTimestamp = (TextView) findViewById(R.id.txtTimestamp);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        makePayment = (Button) findViewById(R.id.makePayment);
+        makePayment.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(PaymentDetailActivity.this, WebActivity.class);
+                intent.putExtra("data", data);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
         rvPaymentDetail = (RecyclerView) findViewById(R.id.rvPaymentDetail);
         rvPaymentDetail.setHasFixedSize(true);
         rvPaymentDetail.setItemAnimator(new DefaultItemAnimator());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvPaymentDetail.setLayoutManager((mLayoutManager));
-        for (int i = 0; i < serviceName.length; i++) {
-            // paymentList.add(payments[i].toString());
-            paymentService = new PaymentService(serviceName[i].toString(), serviceId[i].toString(), sampleDataDec[i].toString());
-            paymentList.add(paymentService);
+        billDetail = new BillDetail();
+        if(getIntent().hasExtra("id"))
+        {
+            id = getIntent().getStringExtra("id");
+            data = getIntent().getStringExtra("data");
         }
-        paymentDetailAdapter = new PaymentDetailAdapter(PaymentDetailActivity.this, paymentList);
-        rvPaymentDetail.setAdapter(paymentDetailAdapter);
+        fetchDetail(id, data);
+    }
 
+    public void fetchDetail(final String id, final String data)
+    {
+        /*dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+        dialog.setMessage("Please wait ...");
+        dialog.show();*/
+
+        Call<FetchDetailResult> loginResponCall = RestClient.getClient().
+                getFatchDetail(id, data);
+        loginResponCall.enqueue(new Callback<FetchDetailResult>()
+        {
+            @Override
+            public void onResponse(Call<FetchDetailResult> call, Response<FetchDetailResult> response)
+            {
+                Log.d("LoginActivity", "Status Code = " + response.code());
+                if(response.isSuccessful())
+                {
+                    // request successful (status code 200, 201)
+                    // dialog.dismiss();
+                    fetchDetailResult = response.body();
+                    card_view.setVisibility(View.VISIBLE);
+                    Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
+                    if(fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null)
+                    {
+                        transactionDetails = fetchDetailResult.getResult().getFetchDetails().getTransactionDetails();
+                        txtPNRNo.setText(transactionDetails.getLookUpId());
+                        txtAmountShow.setText(transactionDetails.getBillAmount());
+                        txtEmail.setText("vaibhav@gmail.com");
+                        txtMobile.setText(transactionDetails.getConsumerKeysValues());
+                        txtUsername.setText(transactionDetails.getConsumerName());
+                        txtPurpose.setText(transactionDetails.getServiceName());
+                    }
+                    if(fetchDetailResult.getResult().getFetchDetails().getBillDetails() != null)
+                    {
+                        billDetailList = fetchDetailResult.getResult().getFetchDetails().getBillDetails();
+                        billDetailAdapter = new BillDetailAdapter(PaymentDetailActivity.this, billDetailList);
+                        rvPaymentDetail.setAdapter(billDetailAdapter);
+                    }
+                }
+                else
+                {
+                    // response received but request not successful (like 400,401,403 etc)
+                    //Handle errors
+                    Log.d("PaymentDetailActivity", "Error Code = " + "errors");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FetchDetailResult> call, Throwable t)
+            {
+                Log.d("PaymentDetailActivity", "Throwable = " + t.toString());
+            }
+        });
     }
 }

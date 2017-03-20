@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.phppoets.grievance.R;
-import com.phppoets.grievance.activity.PaymentStatusActivity;
+import com.phppoets.grievance.activity.PaymentDetailActivity;
 import com.phppoets.grievance.model.payment.PaymentService;
 import com.phppoets.grievance.support.UIUtils;
 import com.phppoets.grievance.utility.TSTypeface;
@@ -46,7 +46,9 @@ public class PaymentDetailAdapter extends RecyclerView.Adapter<PaymentDetailAdap
         holder.Rl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext, PaymentStatusActivity.class).putExtra("data", paymentDetailList.get(position).getSampleDataDec()).putExtra("id", paymentDetailList.get(position).getServiceId()));
+                mContext.startActivity(new Intent(mContext, PaymentDetailActivity.class).putExtra("data", paymentDetailList.get(position)
+                                                                                                                           .getSampleDataDec())
+                                                                                        .putExtra("id", "1"));
             }
         });
     }
