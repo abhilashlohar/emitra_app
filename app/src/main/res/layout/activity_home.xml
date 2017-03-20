@@ -46,6 +46,7 @@
                     android:id="@+id/imgNotification"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
                     android:layout_toLeftOf="@+id/imgMore"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
@@ -55,7 +56,7 @@
                     android:id="@+id/imgMore"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
+
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:src="@drawable/ic_more_vert_black_24dp"
