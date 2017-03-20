@@ -1,12 +1,14 @@
 package com.phppoets.grievance.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ProgressBar;
+import android.webkit.WebViewClient;
 
 import com.phppoets.grievance.R;
 import com.phppoets.grievance.model.makepayment.MakePaymentRequestData;
@@ -23,7 +25,7 @@ public class WebActivity extends BaseActivity
     WebView webView;
     String id, data;
     MakePaymentRequestData makePaymentRequestData;
-    ProgressBar progressBar;
+
     @Override
 
     protected void onCreate(
@@ -33,7 +35,6 @@ public class WebActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_webview);
         webView = (WebView) findViewById(R.id.webView);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         if(getIntent().hasExtra("id"))
         {
             id = getIntent().getStringExtra("id");
@@ -61,6 +62,7 @@ public class WebActivity extends BaseActivity
         settings.setAllowContentAccess(true);
         settings.setAllowFileAccess(true);
         settings.setSaveFormData(true);
+        webView.addJavascriptInterface(new WebViewJavaScriptInterface(this), "Android");
         webView.loadUrl("http://www.jeelwaterpark.com/grievance/grievances/paymentForm");
     }
 
@@ -78,7 +80,6 @@ public class WebActivity extends BaseActivity
             @Override
             public void onResponse(Call<MakePaymentRequestData> call, Response<MakePaymentRequestData> response)
             {
-                progressBar.setVisibility(View.GONE);
                 Log.d("LoginActivity", "Status Code = " + response.code());
                 if(response.isSuccessful())
                 {
@@ -92,6 +93,16 @@ public class WebActivity extends BaseActivity
                             "'" + makePaymentRequestData.getResult().getUSEREMAIL() + "'," +
                             "'" + makePaymentRequestData.getResult().getCHECKSUM() + "'";
                     webView.loadUrl("javascript:setValueinForm(" + data + ")");
+                    webView.setWebViewClient(new WebViewClient()
+                    {
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view, String url)
+                        {
+                            view.loadUrl(url);
+                            Log.d("url", url);
+                            return true;
+                        }
+                    });
                     //                    webView.loadUrl("javascript:submitForm()");
                 }
                 else
@@ -115,5 +126,36 @@ public class WebActivity extends BaseActivity
     {
         super.onResume();
         makePaymentRequest(id, data);
+    }
+
+    /*
+     * JavaScript Interface. Web code can access methods in here
+     * (as long as they have the @JavascriptInterface annotation)
+     */
+    public class WebViewJavaScriptInterface
+    {
+
+        private Context context;
+
+        /*
+         * Need a reference to the context in order to sent a post message
+         */
+        public WebViewJavaScriptInterface(Context context)
+        {
+            this.context = context;
+        }
+
+        /*
+         * This method can be called from Android. @JavascriptInterface
+         * required after SDK version 17.
+         */
+        @JavascriptInterface
+        public void showPDfToDownLoad(String pdfUrl)
+        {
+            Intent intent = new Intent(WebActivity.this, PdfActivity.class);
+            intent.putExtra("url", pdfUrl);
+            startActivity(intent);
+            finish();
+        }
     }
 }

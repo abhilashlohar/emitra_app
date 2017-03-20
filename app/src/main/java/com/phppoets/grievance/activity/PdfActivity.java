@@ -40,7 +40,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class PdfActivity extends AppCompatActivity {
+public class PdfActivity extends AppCompatActivity
+{
     public static final int progress_bar_type = 0;
     private static final String[] PERMISSIONS_WRITE_STORAGE = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     PermissionsChecker checker;
@@ -59,7 +60,8 @@ public class PdfActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         checker = new PermissionsChecker(this);
         pdfName = "example.pdf";
@@ -81,34 +83,36 @@ public class PdfActivity extends AppCompatActivity {
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setScrollbarFadingEnabled(false);
         wv.setBackgroundColor(Color.WHITE);
-        Uri data = getIntent().getData();
+        pdfUrl = getIntent().getStringExtra("url");
         //handleDeepLink(data);
         setFonts();
-        imageViewBack.setOnClickListener(new View.OnClickListener() {
+        imageViewBack.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });
 
-
-        imgCloudDownload.setOnClickListener(new View.OnClickListener() {
+        imgCloudDownload.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                if (checker.lacksPermissions(PERMISSIONS_WRITE_STORAGE)) {
+            public void onClick(View view)
+            {
+                if(checker.lacksPermissions(PERMISSIONS_WRITE_STORAGE))
+                {
                     startPermissionsActivity(PERMISSIONS_WRITE_STORAGE);
-                } else {
+                }
+                else
+                {
                     new DownloadFileFromURL().execute(pdfUrl);
                 }
                 //new DownloadFileFromURL().execute(pdfUrl);
 
             }
-
         });
-
-
     }
-
 
     /* private void getResultData(final String eno_no, final String school_id) {
          Call<ResultResponse> resultResponseCall = RestClient.getClient().
@@ -148,8 +152,10 @@ public class PdfActivity extends AppCompatActivity {
 
      }
  */
-    private void DownloadFiles() {
-        try {
+    private void DownloadFiles()
+    {
+        try
+        {
             //URL u = new URL(searchDatum.getPdfPath());
             URL u = new URL("");
             InputStream is = u.openStream();
@@ -160,20 +166,27 @@ public class PdfActivity extends AppCompatActivity {
             int length;
 
             FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "data/test.pdf"));
-            while ((length = dis.read(buffer)) > 0) {
+            while((length = dis.read(buffer)) > 0)
+            {
                 fos.write(buffer, 0, length);
             }
-
-        } catch (MalformedURLException mue) {
+        }
+        catch(MalformedURLException mue)
+        {
             Log.e("SYNC getUpdate", "malformed url error", mue);
-        } catch (IOException ioe) {
+        }
+        catch(IOException ioe)
+        {
             Log.e("SYNC getUpdate", "io error", ioe);
-        } catch (SecurityException se) {
+        }
+        catch(SecurityException se)
+        {
             Log.e("SYNC getUpdate", "security error", se);
         }
     }
 
-    public void setFonts() {
+    public void setFonts()
+    {
         textViewName.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
         txtStudentName.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
         txtDate.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
@@ -182,13 +195,16 @@ public class PdfActivity extends AppCompatActivity {
         textViewHead.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
     }
 
-    private void startPermissionsActivity(String[] permission) {
+    private void startPermissionsActivity(String[] permission)
+    {
         PermissionsActivity.startActivityForResult(this, 0, permission);
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
+    protected Dialog onCreateDialog(int id)
+    {
+        switch(id)
+        {
             case progress_bar_type: // we set this to 0
                 pDialog = new ProgressDialog(this);
                 pDialog.setMessage("Downloading file. Please wait...");
@@ -203,9 +219,12 @@ public class PdfActivity extends AppCompatActivity {
         }
     }
 
-    private void handleDeepLink(Uri data) {
-        if (Utils.isLoggedIn(getApplicationContext())) {
-            if (InternetStatus.getInstance(this).isOnline()) {
+    private void handleDeepLink(Uri data)
+    {
+        if(Utils.isLoggedIn(getApplicationContext()))
+        {
+            if(InternetStatus.getInstance(this).isOnline())
+            {
                 preferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, MODE_PRIVATE);
                 String dataValue = preferences.getString(AppConfig.KEY_STUDENT_DATA, "");
                 StudentDetails studentDetails = new Gson().fromJson(dataValue, StudentDetails.class);
@@ -214,11 +233,16 @@ public class PdfActivity extends AppCompatActivity {
                 textViewName.setText(studentDetails.getStudentName());
                 //getResultData(eno_no, school_id);
 
-            } else {
+            }
+            else
+            {
                 UIUtils.showSnackBar(this, coordinatorLayout, R.string.no_connection, R.string.ok);
             }
-        } else {
-            if (data != null) {
+        }
+        else
+        {
+            if(data != null)
+            {
                 Utils.setCurrentDeepLink(data.toString());
             }
             NavigationManager.openActivity(this, LoginActivity.class);
@@ -228,14 +252,16 @@ public class PdfActivity extends AppCompatActivity {
     /**
      * Background Async Task to download file
      */
-    class DownloadFileFromURL extends AsyncTask<String, String, String> {
+    class DownloadFileFromURL extends AsyncTask<String, String, String>
+    {
 
         /**
          * Before starting background thread
          * Show Progress Bar Dialog
          */
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
             showDialog(progress_bar_type);
         }
@@ -244,8 +270,10 @@ public class PdfActivity extends AppCompatActivity {
          * Downloading file in background thread
          */
         @Override
-        protected String doInBackground(String... f_url) {
-            try {
+        protected String doInBackground(String... f_url)
+        {
+            try
+            {
                 URL url = new URL(pdfUrl);
                 URLConnection conexion = url.openConnection();
                 conexion.connect();
@@ -258,20 +286,26 @@ public class PdfActivity extends AppCompatActivity {
                 int length;
                 long total = 0;
 
-                FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "Download/test.pdf"));
-                while ((length = input.read(buffer)) != -1) {
+                FileOutputStream fos =
+                        new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + "Download/test.pdf"));
+                while((length = input.read(buffer)) != -1)
+                {
                     total += length;
                     publishProgress("" + (int) ((total * 100) / lenghtOfFile));
                     fos.write(buffer, 0, length);
                 }
-
-            } catch (MalformedURLException mue) {
+            }
+            catch(MalformedURLException mue)
+            {
                 Log.e("SYNC getUpdate", "malformed url error", mue);
-            } catch (IOException ioe) {
+            }
+            catch(IOException ioe)
+            {
                 Log.e("SYNC getUpdate", "io error", ioe);
-            } catch (SecurityException se) {
+            }
+            catch(SecurityException se)
+            {
                 Log.e("SYNC getUpdate", "security error", se);
-
             }
             return null;
         }
@@ -279,7 +313,8 @@ public class PdfActivity extends AppCompatActivity {
         /**
          * Updating progress bar
          */
-        protected void onProgressUpdate(String... progress) {
+        protected void onProgressUpdate(String... progress)
+        {
             // setting progress percentage
             pDialog.setProgress(Integer.parseInt(progress[0]));
         }
@@ -289,11 +324,10 @@ public class PdfActivity extends AppCompatActivity {
          * Dismiss the progress dialog
          **/
         @Override
-        protected void onPostExecute(String file_url) {
+        protected void onPostExecute(String file_url)
+        {
             // dismiss the dialog after the file was downloaded
             dismissDialog(progress_bar_type);
-
         }
-
     }
 }
