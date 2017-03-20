@@ -1,7 +1,10 @@
 package com.phppoets.grievance.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -9,16 +12,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.phppoets.grievance.R;
+import com.phppoets.grievance.adapter.SlideAdapter;
+import com.phppoets.grievance.support.CirclePageIndicator;
+import com.phppoets.grievance.support.SmoothViewPager;
 import com.phppoets.grievance.support.UIUtils;
 import com.phppoets.grievance.utility.TSTypeface;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class HomeActivity extends AppCompatActivity
+{
     ImageView imgNotification, imgMore;
     CardView cvPaymentService, cvPaymentHistroy, cvGrievanceServices, cvGrievanceHistroy;
     TextView txtGrievanceServices, txtPaymentService, txtPaymentHistory, txtGrievanceHistroy;
+    SmoothViewPager viewpagerGallery;
+    CirclePageIndicator circlePageIndicator;
+
+    SlideAdapter slideAdapter;
+    Timer swipeTimer;
+    int currentPage;
+    int NUM_PAGES;
+    List<Drawable> sliderList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         imgNotification = (ImageView) findViewById(R.id.imgNotification);
@@ -31,49 +52,131 @@ public class HomeActivity extends AppCompatActivity {
         txtPaymentService = (TextView) findViewById(R.id.txtPaymentService);
         txtPaymentHistory = (TextView) findViewById(R.id.txtPaymentHistory);
         txtGrievanceHistroy = (TextView) findViewById(R.id.txtGrievanceHistroy);
+        viewpagerGallery = (SmoothViewPager) findViewById(R.id.viewpager_slide);
+        circlePageIndicator = (CirclePageIndicator) findViewById(R.id.circlePageIndicator);
 
+        sliderList = new ArrayList<Drawable>();
+        sliderList.add(getResources().getDrawable(R.drawable.images));
+        sliderList.add(getResources().getDrawable(R.drawable.images_2));
+        sliderList.add(getResources().getDrawable(R.drawable.images_3));
+        sliderList.add(getResources().getDrawable(R.drawable.images_4));
         txtGrievanceServices.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
         txtPaymentService.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
         txtPaymentHistory.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
         txtGrievanceHistroy.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
-        imgNotification.setOnClickListener(new View.OnClickListener() {
+        imgNotification.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
             }
         });
 
-        imgMore.setOnClickListener(new View.OnClickListener() {
+        viewpagerGallery.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+                currentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state)
+            {
+
+            }
+        });
+
+        imgMore.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
                 startActivity(new Intent(HomeActivity.this, PdfActivity.class));
             }
         });
-        cvGrievanceServices.setOnClickListener(new View.OnClickListener() {
+        cvGrievanceServices.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 startActivity(new Intent(HomeActivity.this, GrievanceFormActivity.class));
             }
         });
-        cvPaymentService.setOnClickListener(new View.OnClickListener() {
+        cvPaymentService.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 startActivity(new Intent(HomeActivity.this, PaymentListActivity.class));
             }
         });
 
-        cvGrievanceHistroy.setOnClickListener(new View.OnClickListener() {
+        cvGrievanceHistroy.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
             }
         });
 
-        cvPaymentHistroy.setOnClickListener(new View.OnClickListener() {
+        cvPaymentHistroy.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
             }
         });
+
+        if(slideAdapter == null)
+        {
+            slideAdapter = new SlideAdapter(HomeActivity.this, sliderList);
+        }
+        else
+        {
+            slideAdapter.notifyDataSetChanged();
+        }
+        NUM_PAGES = sliderList.size() + 1;
+        viewpagerGallery.setAdapter(slideAdapter);
+        circlePageIndicator.setViewPager(viewpagerGallery);
+        viewpagerGallery.setScrollDurationFactor(4);
+        autoPlayAdvertise();
+    }
+
+    private void autoPlayAdvertise()
+    {
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable()
+        {
+            public void run()
+            {
+                if(currentPage == NUM_PAGES - 1)
+                {
+                    currentPage = 0;
+                }
+                currentPage = (currentPage + 1) % NUM_PAGES;
+                viewpagerGallery.setCurrentItem(currentPage, true);
+                //advAdapter.notifyDataSetChanged();
+            }
+        };
+        swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask()
+        {
+
+            @Override
+            public void run()
+            {
+                handler.post(Update);
+            }
+        }, 0, 5000);
     }
 }

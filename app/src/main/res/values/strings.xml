@@ -55,5 +55,8 @@
     <string name="GrievanceHistroy">Grievance Histroy</string>
     <string name="noDataFound">No Data Found</string>
     <string name="invalid_credential">Invalid credential</string>
-
+    <string name="click_to_pay">Click here to avail the payment facilities</string>
+    <string name="click_to_pay_history">Click here to see the payment history</string>
+    <string name="click_to_griev">Click here to register your grievance</string>
+    <string name="click_to_griev_history">Click here to see your grievance history</string>
 </resources>

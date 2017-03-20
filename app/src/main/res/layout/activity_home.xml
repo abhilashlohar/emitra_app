@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
 
+    android:id="@+id/main_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/textViewTitle"
@@ -36,7 +36,7 @@
                 android:layout_marginLeft="25dp"
                 android:text="@string/Home"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     android:layout_toLeftOf="@+id/imgMore"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:src="@drawable/ic_notifications_none_black_24dp" />
+                    android:src="@drawable/ic_notifications_none_black_24dp"/>
 
                 <ImageView
                     android:id="@+id/imgMore"
@@ -60,7 +60,7 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:src="@drawable/ic_more_vert_black_24dp"
-                    android:visibility="gone" />
+                    android:visibility="gone"/>
             </RelativeLayout>
 
 
@@ -84,11 +84,35 @@
             android:background="@color/white"
             android:orientation="vertical">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="10dp">
+
+                <com.phppoets.grievance.support.SmoothViewPager
+                    android:id="@+id/viewpager_slide"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+                <com.phppoets.grievance.support.CirclePageIndicator
+                    android:id="@+id/circlePageIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    app:fillColor="@color/colorPrimary"
+                    app:pageColor="@color/grey"
+                    app:radius="4dp"
+                    app:strokeWidth="0dp"/>
+            </FrameLayout>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cvPaymentService"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -107,7 +131,18 @@
                         android:layout_centerInParent="true"
                         android:text="@string/Payment"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txtPaymentServiceDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@string/click_to_pay"
+                        android:textColor="@color/sub_title_color"
+                        android:textSize="10sp"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -115,7 +150,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cvPaymentHistroy"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -134,7 +169,18 @@
                         android:layout_centerInParent="true"
                         android:text="@string/PaymentHistroy"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txtPaymentServiceHisDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@string/click_to_pay_history"
+                        android:textColor="@color/sub_title_color"
+                        android:textSize="10sp"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -142,7 +188,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cvGrievanceServices"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -161,14 +207,26 @@
                         android:layout_centerInParent="true"
                         android:text="@string/GrievanceServices"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txtGrievDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@string/click_to_griev"
+                        android:textColor="@color/sub_title_color"
+                        android:textSize="10sp"/>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cvGrievanceHistroy"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -187,7 +245,18 @@
                         android:layout_centerInParent="true"
                         android:text="@string/GrievanceHistroy"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/txtGrievanceHistroyDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@string/click_to_griev_history"
+                        android:textColor="@color/sub_title_color"
+                        android:textSize="10sp"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>

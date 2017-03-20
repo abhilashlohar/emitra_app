@@ -34,7 +34,8 @@ import retrofit2.Response;
 /**
  * Created by user on 3/20/2017.
  */
-public class PaymentDetailActivity extends AppCompatActivity {
+public class PaymentDetailActivity extends AppCompatActivity
+{
     FetchDetailResult fetchDetailResult;
     Result result;
     TransactionDetails transactionDetails;
@@ -51,7 +52,10 @@ public class PaymentDetailActivity extends AppCompatActivity {
     ImageView imageViewBack;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(
+            @Nullable
+            Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_payment_status);
         card_view = (CardView) findViewById(R.id.card_view);
@@ -77,9 +81,11 @@ public class PaymentDetailActivity extends AppCompatActivity {
         txtNoRecordsFound.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        makePayment.setOnClickListener(new View.OnClickListener() {
+        makePayment.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Intent intent = new Intent(PaymentDetailActivity.this, WebActivity.class);
                 intent.putExtra("data", data);
                 intent.putExtra("id", id);
@@ -93,20 +99,24 @@ public class PaymentDetailActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvPaymentDetail.setLayoutManager((mLayoutManager));
         billDetail = new BillDetail();
-        if (getIntent().hasExtra("id")) {
+        if(getIntent().hasExtra("id"))
+        {
             id = getIntent().getStringExtra("id");
             data = getIntent().getStringExtra("data");
         }
-        imageViewBack.setOnClickListener(new View.OnClickListener() {
+        imageViewBack.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 finish();
             }
         });
         fetchDetail(id, data);
     }
 
-    public void fetchDetail(final String id, final String data) {
+    public void fetchDetail(final String id, final String data)
+    {
         /*dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
         dialog.setMessage("Please wait ...");
@@ -114,20 +124,26 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         Call<FetchDetailResult> loginResponCall = RestClient.getClient().
                 getFatchDetail(id, data);
-        loginResponCall.enqueue(new Callback<FetchDetailResult>() {
+        loginResponCall.enqueue(new Callback<FetchDetailResult>()
+        {
             @Override
-            public void onResponse(Call<FetchDetailResult> call, Response<FetchDetailResult> response) {
+            public void onResponse(Call<FetchDetailResult> call, Response<FetchDetailResult> response)
+            {
                 Log.d("LoginActivity", "Status Code = " + response.code());
-                if (response.isSuccessful()) {
+                if(response.isSuccessful())
+                {
                     // request successful (status code 200, 201)
                     // dialog.dismiss();
                     progressBar.setVisibility(View.GONE);
                     fetchDetailResult = response.body();
 
-                    Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
+                    //Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
                     result = fetchDetailResult.getResult();
-                    if (result != null) {
-                        if (fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null) {
+                    if(result != null)
+                    {
+                        if(fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null &&
+                                fetchDetailResult.getResult().getFetchDetails().getTransactionDetails().getBillAmount() != null)
+                        {
                             card_view.setVisibility(View.VISIBLE);
                             makePayment.setVisibility(View.VISIBLE);
                             transactionDetails = fetchDetailResult.getResult().getFetchDetails().getTransactionDetails();
@@ -137,23 +153,29 @@ public class PaymentDetailActivity extends AppCompatActivity {
                             txtMobile.setText(transactionDetails.getConsumerKeysValues());
                             txtUsername.setText(transactionDetails.getConsumerName());
                             txtPurpose.setText(transactionDetails.getServiceName());
-                            if (fetchDetailResult.getResult().getFetchDetails().getBillDetails() != null) {
+                            if(fetchDetailResult.getResult().getFetchDetails().getBillDetails() != null)
+                            {
+
                                 billDetailList = fetchDetailResult.getResult().getFetchDetails().getBillDetails();
                                 billDetailAdapter = new BillDetailAdapter(PaymentDetailActivity.this, billDetailList);
                                 rvPaymentDetail.setAdapter(billDetailAdapter);
-                            } else {
+                            }
+                            else
+                            {
 
                             }
-
-                        } else {
+                        }
+                        else
+                        {
                             // response received but request not successful (like 400,401,403 etc)
                             //Handle error
                             txtNoRecordsFound.setVisibility(View.VISIBLE);
                             card_view.setVisibility(View.GONE);
                             Log.d("PaymentDetailActivity", "Error Code = " + "errors");
-
                         }
-                    } else {
+                    }
+                    else
+                    {
                         txtNoRecordsFound.setVisibility(View.VISIBLE);
                         card_view.setVisibility(View.GONE);
                         //UIUtils.showOkAlertDialog(PaymentDetailActivity.this,getString(R.string.app_name),getString(R.string.noDataFound));
@@ -162,7 +184,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<FetchDetailResult> call, Throwable t) {
+            public void onFailure(Call<FetchDetailResult> call, Throwable t)
+            {
                 Log.d("PaymentDetailActivity", "Throwable = " + t.toString());
             }
         });
