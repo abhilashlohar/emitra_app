@@ -78,7 +78,8 @@ public class WebActivity extends BaseActivity
                             "'" + makePaymentRequestData.getResult().getUSERNAME() + "'," +
                             "'" + makePaymentRequestData.getResult().getUSERMOBILE() + "'," +
                             "'" + makePaymentRequestData.getResult().getUSEREMAIL() + "'," +
-                            "'" + makePaymentRequestData.getResult().getCHECKSUM() + "'";
+                            "'" + makePaymentRequestData.getResult().getCHECKSUM() + "'," +
+                            "'" + makePaymentRequestData.getResult().getUserId() + "'";
                     webView.loadUrl("javascript:setValueinForm(" + data + ")");
                     webView.setWebViewClient(new WebViewClient()
                     {
@@ -115,6 +116,11 @@ public class WebActivity extends BaseActivity
         makePaymentRequest(id, data);
     }
 
+    public void finishThis()
+    {
+        WebActivity.this.finish();
+    }
+
     /*
      * JavaScript Interface. Web code can access methods in here
      * (as long as they have the @JavascriptInterface annotation)
@@ -141,7 +147,9 @@ public class WebActivity extends BaseActivity
         {
             if(TextUtils.isEmpty(pdfUrl))
             {
-                onBackPressed();
+                finish();
+                finishThis();
+                return;
             }
             Log.d("url", pdfUrl);
             Intent intent = new Intent(WebActivity.this, PdfActivity.class);

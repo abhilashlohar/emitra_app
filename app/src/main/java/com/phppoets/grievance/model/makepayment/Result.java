@@ -42,6 +42,10 @@ public class Result
     @Expose
     private String cHECKSUM;
 
+    @SerializedName("user_id")
+    @Expose
+    private String userId;
+
     public String getMERCHANTCODE()
     {
         return mERCHANTCODE;
@@ -160,5 +164,15 @@ public class Result
     public void setCHECKSUM(String cHECKSUM)
     {
         this.cHECKSUM = cHECKSUM;
+    }
+
+    public String getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(String userId)
+    {
+        this.userId = userId;
     }
 }
