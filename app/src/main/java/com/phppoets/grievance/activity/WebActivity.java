@@ -3,8 +3,10 @@ package com.phppoets.grievance.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 import com.phppoets.grievance.R;
 import com.phppoets.grievance.model.makepayment.MakePaymentRequestData;
@@ -21,7 +23,7 @@ public class WebActivity extends BaseActivity
     WebView webView;
     String id, data;
     MakePaymentRequestData makePaymentRequestData;
-
+    ProgressBar progressBar;
     @Override
 
     protected void onCreate(
@@ -31,6 +33,7 @@ public class WebActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_webview);
         webView = (WebView) findViewById(R.id.webView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         if(getIntent().hasExtra("id"))
         {
             id = getIntent().getStringExtra("id");
@@ -75,6 +78,7 @@ public class WebActivity extends BaseActivity
             @Override
             public void onResponse(Call<MakePaymentRequestData> call, Response<MakePaymentRequestData> response)
             {
+                progressBar.setVisibility(View.GONE);
                 Log.d("LoginActivity", "Status Code = " + response.code());
                 if(response.isSuccessful())
                 {

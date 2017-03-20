@@ -48,5 +48,7 @@
     <string name="PNR">PNR :</string>
     <string name="Amount">Amount :</string>
     <string name="Make_Payment">Make Payment</string>
+    <string name="NoRecordsFound">No Records Found</string>
+    <string name="select_payment_service">Select Payment Service</string>
 
 </resources>

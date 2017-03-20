@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
-                                                 xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent">
 
@@ -40,18 +40,23 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/makePayment"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.CardView android:id="@+id/card_view"
-                                                xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_margin="5dp"
@@ -60,8 +65,8 @@
                                                 card_view:cardCornerRadius="3dp"
                                                 card_view:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <LinearLayout android:id="@+id/Rlmain"
-                              xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/Rlmain"
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:layout_marginEnd="10dp"
@@ -195,26 +200,42 @@
                         android:scrollbars="none" />
 
 
-                    <Button
-                        android:id="@+id/makePayment"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/Make_Payment"
-                        android:textColor="@color/white" />
+
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
+
+            <TextView
+                android:id="@+id/txtNoRecordsFound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:text="@string/NoRecordsFound"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:visibility="gone" />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/makePayment"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:enabled="false"
+            android:text="@string/Make_Payment"
+            android:textColor="@color/white" />
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 
 

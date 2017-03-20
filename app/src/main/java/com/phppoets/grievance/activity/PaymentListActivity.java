@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.phppoets.grievance.R;
 import com.phppoets.grievance.adapter.PaymentDetailAdapter;
@@ -13,8 +15,7 @@ import com.phppoets.grievance.model.payment.PaymentService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentListActivity extends AppCompatActivity
-{
+public class PaymentListActivity extends AppCompatActivity {
     RecyclerView rvPaymentDetail;
     // String payments[] = {"a", "b", "c", "d", "e", "f", "g"};
     String serviceName[] = {"Airtel Mobile Bill Postpaid", "Idea Mobile Postpaid Bill", "Idea Mobile Postpaid Bill", "Vodafone Mobile Postpaid Bill", "Phed Water Bill", "BSNL Mobile Postpaid Bill"};
@@ -25,12 +26,14 @@ public class PaymentListActivity extends AppCompatActivity
     List<PaymentService> paymentList;
     PaymentDetailAdapter paymentDetailAdapter;
     PaymentService paymentService;
+    ImageView imageViewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_detail);
         paymentList = new ArrayList<PaymentService>();
+        imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
         rvPaymentDetail = (RecyclerView) findViewById(R.id.rvPaymentDetail);
         rvPaymentDetail.setHasFixedSize(true);
         rvPaymentDetail.setItemAnimator(new DefaultItemAnimator());
@@ -43,6 +46,11 @@ public class PaymentListActivity extends AppCompatActivity
         }
         paymentDetailAdapter = new PaymentDetailAdapter(PaymentListActivity.this, paymentList);
         rvPaymentDetail.setAdapter(paymentDetailAdapter);
-
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
