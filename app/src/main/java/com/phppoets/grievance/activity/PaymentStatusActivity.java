@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.phppoets.grievance.R;
@@ -38,11 +39,13 @@ public class PaymentStatusActivity extends AppCompatActivity {
     BillDetail billDetail;
     List<BillDetail> billDetailList;
     CardView card_view;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_payment_status);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         card_view = (CardView) findViewById(R.id.card_view);
         txtPNRNo = (TextView) findViewById(R.id.txtPNRNo);
         txtAmountShow = (TextView) findViewById(R.id.txtAmountShow);
@@ -80,6 +83,7 @@ public class PaymentStatusActivity extends AppCompatActivity {
                     // request successful (status code 200, 201)
                     // dialog.dismiss();
                     fetchDetailResult = response.body();
+                    progressBar.setVisibility(View.GONE);
                     card_view.setVisibility(View.VISIBLE);
                     Log.d("LoginActivity", "Status Code = " + fetchDetailResult.getResult().getFetchDetails().getBillDetails().toString());
                     if (fetchDetailResult.getResult().getFetchDetails().getTransactionDetails() != null) {

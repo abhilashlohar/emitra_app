@@ -75,6 +75,7 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.My
 
         public void setFonts() {
             txtLabelValue.setTypeface(UIUtils.getTypeface(mContext, TSTypeface.MEDIUM));
+            txtLabelName.setTypeface(UIUtils.getTypeface(mContext, TSTypeface.MEDIUM));
             /*txtNewsSubTitle.setTypeface(UIUtils.getTypeface(mContext, TSTypeface.LIGHT));
             txtNewsDate.setTypeface(UIUtils.getTypeface(mContext, TSTypeface.LIGHT));
             textViewShare.setTypeface(UIUtils.getTypeface(mContext, TSTypeface.LIGHT));*/

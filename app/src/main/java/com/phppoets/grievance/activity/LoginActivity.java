@@ -1,12 +1,14 @@
 package com.phppoets.grievance.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.phppoets.grievance.R;
 import com.phppoets.grievance.model.login.LoginResponse;
 import com.phppoets.grievance.rest.RestClient;
+import com.phppoets.grievance.support.AppConfig;
 import com.stephentuso.welcome.WelcomeHelper;
 
 import retrofit2.Call;
@@ -26,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtForgot, txtSignUp;
     String username, password, gcm_id;
     LoginResponse loginResponse;
+    ProgressBar progressBar;
+    SharedPreferences sharedPreferences;
     private WelcomeHelper sampleWelcomeScreen;
 
     @Override
@@ -34,11 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         sampleWelcomeScreen = new WelcomeHelper(this, StartActivity.class);
         sampleWelcomeScreen.show(savedInstanceState);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         editUserName = (EditText) findViewById(R.id.editTextUserName);
         editPassword = (EditText) findViewById(R.id.editTextPassword);
         txtForgot = (TextView) findViewById(R.id.txtForgot);
         txtSignUp = (TextView) findViewById(R.id.txtSignUp);
+        sharedPreferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, 0); // 0 - for private mode
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (isValid()) {
                     gcm_id = FirebaseInstanceId.getInstance().getToken();
                     doLogin(username, password, gcm_id);
-
+                    progressBar.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -109,10 +116,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // request successful (status code 200, 201)
                     // dialog.dismiss();
+                    progressBar.setVisibility(View.GONE);
                     loginResponse = response.body();
                     if (loginResponse.getResult().getLoginStatus()) {
                         int userID = loginResponse.getResult().getUserData().getId();
                         String name = loginResponse.getResult().getUserData().getName();
+                        sharedPreferences.edit().putBoolean(AppConfig.KEY_PREFS_ISLOGGED, true)
+                                .putString(AppConfig.KEY_UNIQ_ID, String.valueOf(userID))
+                                .apply();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();

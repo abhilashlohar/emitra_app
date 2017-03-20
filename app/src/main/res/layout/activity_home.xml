@@ -84,9 +84,12 @@
             android:id="@+id/cvPayment"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="25dp"
-            android:elevation="3dp"
-            android:padding="1dp">
+            android:elevation="3dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -108,9 +111,12 @@
             android:id="@+id/cvGrievance"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="25dp"
-            android:elevation="3dp"
-            android:padding="1dp">
+            android:elevation="3dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
