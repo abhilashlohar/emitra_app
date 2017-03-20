@@ -54,5 +54,6 @@
     <string name="GrievanceServices">Grievance Services</string>
     <string name="GrievanceHistroy">Grievance Histroy</string>
     <string name="noDataFound">No Data Found</string>
+    <string name="invalid_credential">Invalid credential</string>
 
 </resources>

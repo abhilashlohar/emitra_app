@@ -1,5 +1,6 @@
 package com.phppoets.grievance.rest;
 
+import com.phppoets.grievance.model.base.BaseClass;
 import com.phppoets.grievance.model.login.LoginResponse;
 import com.phppoets.grievance.model.makepayment.MakePaymentRequestData;
 import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
@@ -25,8 +26,8 @@ public interface ApiInterface
     @FormUrlEncoded
     @POST("/grievance/Logins/login")
     Call<LoginResponse> getLogin(
-            @Field("username")
-            String username,
+            @Field("mobile")
+            String mobile,
             @Field("password")
             String password,
             @Field("gcm_id")
@@ -41,6 +42,31 @@ public interface ApiInterface
             String data,
             @Query("make_payment")
             boolean makePayment);
+
+    @Headers("Accept:application/json")
+    @GET("/grievance/Logins/updateGcm")
+    Call<BaseClass> updateGCM(
+            @Query("user_id")
+            String userId,
+            @Query("gcm_id")
+            String gcmId);
+
+    @Headers("Accept:application/json")
+    @FormUrlEncoded
+    @POST("grievance/Logins/signup")
+    Call<BaseClass> getSignUp(
+            @Field("name")
+            String name,
+            @Field("password")
+            String password,
+            @Field("email")
+            String email,
+            @Field("address")
+            String address,
+            @Field("gcm_id")
+            String gcmId,
+            @Field("mobile")
+            String mobile);
 
     //    @FormUrlEncoded
     //    @POST("/jainthela/app/api/login")

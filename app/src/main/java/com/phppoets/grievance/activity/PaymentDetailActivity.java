@@ -133,7 +133,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
                             transactionDetails = fetchDetailResult.getResult().getFetchDetails().getTransactionDetails();
                             txtPNRNo.setText(transactionDetails.getLookUpId());
                             txtAmountShow.setText(transactionDetails.getBillAmount());
-                            txtEmail.setText("vaibhav@gmail.com");
+                            //txtEmail.setText("vaibhav@gmail.com");
                             txtMobile.setText(transactionDetails.getConsumerKeysValues());
                             txtUsername.setText(transactionDetails.getConsumerName());
                             txtPurpose.setText(transactionDetails.getServiceName());
@@ -148,6 +148,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
                         } else {
                             // response received but request not successful (like 400,401,403 etc)
                             //Handle error
+                            txtNoRecordsFound.setVisibility(View.VISIBLE);
+                            card_view.setVisibility(View.GONE);
                             Log.d("PaymentDetailActivity", "Error Code = " + "errors");
 
                         }

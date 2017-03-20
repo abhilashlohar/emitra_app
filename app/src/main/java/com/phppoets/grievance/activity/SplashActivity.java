@@ -17,7 +17,8 @@ import com.phppoets.grievance.utility.TSTypeface;
 /**
  * Created by user on 3/20/2017.
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity
+{
     Context context = SplashActivity.this;
     SharedPreferences preferences;
     Handler handler;
@@ -25,33 +26,40 @@ public class SplashActivity extends AppCompatActivity {
     TextView txtAppname;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(
+            @Nullable
+            Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activit_splash);
         txtAppname = (TextView) findViewById(R.id.txtAppname);
         txtAppname.setTypeface(UIUtils.getTypeface(this, TSTypeface.MEDIUM));
 
-
         preferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, MODE_PRIVATE);
         handler = new Handler();
-        noticeRunnable = new Runnable() {
+        noticeRunnable = new Runnable()
+        {
             @Override
-            public void run() {
+            public void run()
+            {
                 // TODO Auto-generated method stub
-                if (isLoggedIn()) {
+                if(isLoggedIn())
+                {
                     startActivity(new Intent(context, HomeActivity.class));
                     finish();
-                } else {
+                }
+                else
+                {
                     startActivity(new Intent(context, LoginActivity.class));
                     finish();
                 }
-
             }
         };
         handler.postDelayed(noticeRunnable, 3000);
     }
 
-    public boolean isLoggedIn() {
+    public boolean isLoggedIn()
+    {
         return preferences.getBoolean(AppConfig.KEY_PREFS_ISLOGGED, false);
     }
 }

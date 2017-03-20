@@ -91,18 +91,17 @@ public class FCMNotificationsService extends FirebaseMessagingService
                                                                                                  .setBigContentTitle(context.getString(
                                                                                                          R.string.app_name)));
             Intent windowToOpenIntent = NavigationManager.getDeepLinkIntent(context, deepLink);
-            if(windowToOpenIntent != null)
-            {
-                windowToOpenIntent.putExtra(Utils.IS_FROM_NOTIFICATION, true);
-                windowToOpenIntent.putExtra(Utils.DEEP_LINK, deepLink);
-                windowToOpenIntent.putExtra(Utils.NOTIFICATION_ID, notificationId);
-                PendingIntent pendingIntent =
-                        PendingIntent.getActivity(context, 100, windowToOpenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notificationBuilder.setContentIntent(pendingIntent);
-                notificationBuilder.setAutoCancel(true);
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(0, notificationBuilder.build());
-            }
+            //            if(windowToOpenIntent != null)
+            //            {
+            windowToOpenIntent.putExtra(Utils.IS_FROM_NOTIFICATION, true);
+            windowToOpenIntent.putExtra(Utils.DEEP_LINK, deepLink);
+            windowToOpenIntent.putExtra(Utils.NOTIFICATION_ID, notificationId);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 100, windowToOpenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            notificationBuilder.setAutoCancel(true);
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(0, notificationBuilder.build());
+            //}
         }
     }
 
