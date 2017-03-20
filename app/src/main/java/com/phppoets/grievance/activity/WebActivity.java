@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -138,6 +139,10 @@ public class WebActivity extends BaseActivity
         @JavascriptInterface
         public void showPDfToDownLoad(String pdfUrl)
         {
+            if(TextUtils.isEmpty(pdfUrl))
+            {
+                onBackPressed();
+            }
             Log.d("url", pdfUrl);
             Intent intent = new Intent(WebActivity.this, PdfActivity.class);
             intent.putExtra("url", pdfUrl);
