@@ -26,7 +26,7 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.My
     private List<BillDetail> billDetailList;
     private Activity mContext;
 
-    public BillDetailAdapter(Activity context, List<BillDetail> paymentDetailList) {
+    public BillDetailAdapter(Activity context, List<BillDetail> billDetailList) {
         this.mContext = context;
         this.billDetailList = billDetailList;
     }

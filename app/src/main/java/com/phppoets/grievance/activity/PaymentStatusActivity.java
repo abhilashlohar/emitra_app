@@ -18,6 +18,7 @@ import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
 import com.phppoets.grievance.model.notification.fetchdetail.TransactionDetails;
 import com.phppoets.grievance.rest.RestClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,7 +56,7 @@ public class PaymentStatusActivity extends AppCompatActivity {
         rvPaymentDetail.setItemAnimator(new DefaultItemAnimator());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvPaymentDetail.setLayoutManager((mLayoutManager));
-        billDetail = new BillDetail();
+        billDetailList = new ArrayList<BillDetail>();
         if (getIntent().hasExtra("id")) {
             id = getIntent().getStringExtra("id");
             data = getIntent().getStringExtra("data");

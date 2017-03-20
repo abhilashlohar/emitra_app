@@ -17,6 +17,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievance_form);
+        autoTextViewDepartment = (AutoCompleteTextView) findViewById(R.id.autoTextViewDepartment);
         dtInterface = new DataTransferInterface() {
             @Override
             public void setValues(String al) {

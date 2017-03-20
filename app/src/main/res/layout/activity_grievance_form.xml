@@ -100,11 +100,9 @@
                     android:theme="@style/TextLabelAll">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView"
-                        android:layout_width="0dp"
+                        android:id="@+id/autoTextViewDepartment"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_toLeftOf="@+id/img_search"
-                        android:layout_weight="6"
                         android:background="@color/white"
                         android:dropDownHeight="250dp"
                         android:hint="@string/Department"
@@ -135,11 +133,9 @@
                     android:theme="@style/TextLabelAll">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextViewSub"
-                        android:layout_width="0dp"
+                        android:id="@+id/autoTextViewSubDepartment"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_toLeftOf="@+id/img_search"
-                        android:layout_weight="6"
                         android:background="@color/white"
                         android:dropDownHeight="250dp"
                         android:hint="@string/SubDepartment"
@@ -185,14 +181,15 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnAttachFile"
                         android:layout_width="60dp"
                         android:layout_height="45dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="..."
+                        android:background="@color/colorPrimary"
+                        android:src="@drawable/ic_attachment_black_24dp"
                         android:textSize="20sp" />
 
                 </RelativeLayout>
