@@ -84,6 +84,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
                 intent.putExtra("data", data);
                 intent.putExtra("id", id);
                 startActivity(intent);
+                finish();
             }
         });
         rvPaymentDetail = (RecyclerView) findViewById(R.id.rvPaymentDetail);

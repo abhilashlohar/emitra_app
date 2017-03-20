@@ -7,21 +7,24 @@ import android.support.annotation.Nullable;
 
 import com.phppoets.grievance.utility.Utils;
 
-
 /**
  *
  */
-public class NavigationManager {
+public class NavigationManager
+{
 
-    public static void openActivity(Context context, Class activity) {
+    public static void openActivity(Context context, Class activity)
+    {
         Intent intent = new Intent(context, activity);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
     @Nullable
-    public static Intent getDeepLinkIntent(Context context, String deepLink) {
-        if (deepLink == null || deepLink.isEmpty()) {
+    public static Intent getDeepLinkIntent(Context context, String deepLink)
+    {
+        if(deepLink == null || deepLink.isEmpty())
+        {
             return null;
         }
 
@@ -29,21 +32,35 @@ public class NavigationManager {
 
         Intent intent = null;
         Uri uri = new Uri.Builder().authority(deepLink.substring(deepLink.lastIndexOf("/") + 1,
-                deepLink.lastIndexOf("?") != -1 ? deepLink.lastIndexOf("?") :
-                        deepLink.length()))
-                .scheme(deepLink.substring(0, deepLink.indexOf(":")))
-                .build();
+                                                                 deepLink.lastIndexOf("?") != -1 ? deepLink.lastIndexOf("?") :
+                                                                         deepLink.length()))
+                                   .scheme(deepLink.substring(0, deepLink.indexOf(":")))
+                                   .build();
 
-        if (uri.getAuthority().equals("event")) {
+        if(uri.getAuthority().equals("event"))
+        {
             // intent = new Intent(context, EventDetailsActivity.class);
             int length = deepLink.lastIndexOf("&");
-            if (length == -1) {
+            if(length == -1)
+            {
                 length = deepLink.length();
             }
             uri = uri.buildUpon().appendQueryParameter(Utils.ID, deepLink.substring(deepLink.lastIndexOf("id=") + 3, length)).build();
         }
 
-        if (intent != null) {
+        if(uri.getAuthority().equals("paymentDetail"))
+        {
+            // intent = new Intent(context, EventDetailsActivity.class);
+            int length = deepLink.lastIndexOf("&");
+            if(length == -1)
+            {
+                length = deepLink.length();
+            }
+            uri = uri.buildUpon().appendQueryParameter(Utils.ID, deepLink.substring(deepLink.lastIndexOf("id=") + 3, length)).build();
+        }
+
+        if(intent != null)
+        {
             intent.setData(uri);
         }
         return intent;

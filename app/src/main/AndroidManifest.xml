@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.phppoets.grievance">
+<manifest package="com.phppoets.grievance"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
@@ -34,7 +34,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/WelcomeScreenTheme" />
 
-        <service android:name=".service.FCMNotificationsService">
+        <service
+            android:name=".service.FCMNotificationsService"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
