@@ -73,7 +73,7 @@ public class ObjectAdapter extends BaseAdapter implements Filterable {
         holder.autoText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dtInterface.setValues(suggestions.get(position));
+                dtInterface.setValues(suggestions.get(position), position);
             }
         });
 

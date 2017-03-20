@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.phppoets.grievance"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.phppoets.grievance">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -74,6 +75,10 @@
         <activity
             android:name=".activity.WebActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.PaymentHistoryActivity" />
+        <activity android:name=".activity.GrievanceHistoryActivity" />
+        <activity android:name=".activity.PaymentHistoryDetailActivity" />
+        <activity android:name=".activity.GrievanceHistoryDetailActivity"></activity>
     </application>
 
 </manifest>

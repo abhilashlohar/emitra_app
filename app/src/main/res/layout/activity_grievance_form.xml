@@ -51,9 +51,10 @@
         <ScrollView
             android:id="@+id/ScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            >
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnAccept"
+            android:layout_marginBottom="10dp"
+            android:fillViewport="true">
 
 
             <LinearLayout
@@ -104,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@color/white"
-                        android:dropDownHeight="250dp"
+                        android:dropDownHeight="wrap_content"
                         android:hint="@string/Department"
                         android:paddingLeft="5dp"
                         android:textColor="@color/darkGrey"
@@ -120,7 +121,8 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@color/darkGrey" />
+                    android:background="@color/darkGrey"
+                    android:visibility="gone" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_subDepartment"
@@ -128,7 +130,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:theme="@style/TextLabelAll">
+                    android:theme="@style/TextLabelAll"
+                    android:visibility="gone">
 
                     <AutoCompleteTextView
                         android:id="@+id/autoTextViewSubDepartment"
@@ -157,7 +160,7 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="50dp">
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_AttachFile"
@@ -203,6 +206,7 @@
                     android:padding="5dp"
                     android:scrollbars="none"
                     android:visibility="gone" />
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_description"
                     android:layout_width="match_parent"
@@ -228,7 +232,7 @@
 
 
         <Button
-            android:id="@+id/btnAssign"
+            android:id="@+id/btnAccept"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
