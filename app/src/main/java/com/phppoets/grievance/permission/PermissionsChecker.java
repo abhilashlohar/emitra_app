@@ -1,4 +1,4 @@
-package com.phppoets.grievance.utility;
+package com.phppoets.grievance.permission;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

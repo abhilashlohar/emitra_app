@@ -8,6 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextLabelAll" parent="Widget.Design.TextInputLayout">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/darkGrey</item>
+        <item name="android:textSize">20sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/darkGrey</item>
+        <item name="colorControlActivated">@color/darkGrey</item>
+    </style>
+
     <style name="CustomShowcaseTheme2" parent="ShowcaseView">
         <item name="sv_backgroundColor">#e51249d9</item>
         <item name="sv_showcaseColor">#25467A</item>

@@ -9,5 +9,21 @@
     <color name="blue_background">#1976D2</color>
     <color name="orange_background">#F57C00</color>
     <color name="red_background">#D32F2F</color>
-
+    <color name="title">#666666</color>
+    <color name="grey">#f2f3f3</color>
+    <color name="black">#000000</color>
+    <color name="btnGreen">#5cb85c</color>
+    <color name="darkGrey">#808080</color>
+    <color name="menuColor">#606062</color>
+    <color name="event">#373435</color>
+    <color name="title_color">#5f5c5d</color>
+    <color name="sub_title_color">#b2b0b0</color>
+    <color name="light_text">#b2b0b0</color>
+    <color name="grey_symbol">#8e8e8e</color>
+    <color name="view">#606062</color>
+    <color name="theme_background">#703C746B</color>
+    <color name="title_event_date">#373435</color>
+    <color name="indicatorTextColor">#802E2E2E</color>
+    <color name="activityBackground">#953C746B</color>
+    <color name="brown">#2D1509</color>
 </resources>

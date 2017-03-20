@@ -24,6 +24,7 @@
         </activity>
         <activity
             android:name=".activity.StartActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/WelcomeScreenTheme" />
 
         <service android:name=".service.FCMNotificationsService">
@@ -41,8 +42,24 @@
         <activity
             android:name=".activity.SignUpActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.NotificationActivity" />
-        <activity android:name=".activity.HomeActivity"></activity>
+        <activity
+            android:name=".activity.NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PdfActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.GrievanceFormActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PaymentDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.PaymentStatusActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,7 +1,6 @@
 package com.phppoets.grievance.rest;
 
 import com.phppoets.grievance.application.MyApplication;
-import com.phppoets.grievance.support.InternetStatus;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class RestClient
     public static ApiInterface apiInterface;
     // public static String baseUrl = "http://shantismelting.com" ;
     //    public static String baseUrl= "http://api.androidhive.info";
-    public static String baseUrl = "http://www.jeelwaterpark.com/grievance";
+    public static String baseUrl = "http://www.jeelwaterpark.com";
 
     public static ApiInterface getClient()
     {
@@ -97,11 +96,11 @@ public class RestClient
             {
                 Request request = chain.request();
 
-                if(!InternetStatus.getInstance(MyApplication.getContext()).isOnline())
-                {
+//                if(!InternetStatus.getInstance(MyApplication.getContext()).isOnline())
+//                {
                     CacheControl cacheControl = new CacheControl.Builder().maxStale(7, TimeUnit.DAYS).build();
                     request = request.newBuilder().cacheControl(cacheControl).build();
-                }
+                //}
 
                 return chain.proceed(request);
             }
