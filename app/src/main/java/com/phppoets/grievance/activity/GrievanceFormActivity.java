@@ -89,7 +89,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
         autoTextViewSubDepartment = (AutoCompleteTextView) findViewById(R.id.autoTextViewSubDepartment);
         checker = new PermissionsChecker(this);
         preferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, MODE_PRIVATE);
-        user_id = preferences.getString(AppConfig.KEY_USER_ID, "");
+        user_id = preferences.getString(AppConfig.KEY_UNIQ_ID, "");
 
         getDepartment();
         dtInterface = new DataTransferInterface() {

@@ -1,5 +1,6 @@
 package com.phppoets.grievance.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,7 +14,7 @@ import com.phppoets.grievance.R;
 import com.phppoets.grievance.adapter.GrievanceHistoryAdapter;
 import com.phppoets.grievance.model.grievanceHistory.GrievanceHIstoryREsponse;
 import com.phppoets.grievance.rest.RestClient;
-import com.phppoets.grievance.utility.Utils;
+import com.phppoets.grievance.support.AppConfig;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +25,8 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
     ImageView imageViewBack;
     GrievanceHistoryAdapter grievanceHistoryAdapter;
     GrievanceHIstoryREsponse grievanceHIstoryREsponse;
+    SharedPreferences preferences;
+    String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,10 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
         rvGrievanceHistroy.setItemAnimator(new DefaultItemAnimator());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvGrievanceHistroy.setLayoutManager((mLayoutManager));
-        getGrievanceHistory(Utils.getUserId(this));
+        preferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, MODE_PRIVATE);
+        user_id = preferences.getString(AppConfig.KEY_UNIQ_ID, "");
+
+        getGrievanceHistory(user_id);
     }
 
     public void getGrievanceHistory(final String login_id) {
@@ -57,6 +63,7 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
                     // dialog.dismiss();
                     grievanceHIstoryREsponse = response.body();
                     grievanceHistoryAdapter = new GrievanceHistoryAdapter(GrievanceHistoryActivity.this, grievanceHIstoryREsponse.getResult());
+                    rvGrievanceHistroy.setAdapter(grievanceHistoryAdapter);
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
                     //Handle errors
