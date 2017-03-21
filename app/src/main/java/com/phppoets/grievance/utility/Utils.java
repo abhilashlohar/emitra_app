@@ -132,7 +132,7 @@ public class Utils
 
     public static String getUserId(Context context)
     {
-        return context.getSharedPreferences(AppConfig.KEY_PREFS_NAME, 0).getString(AppConfig.KEY_USER_ID, "");
+        return context.getSharedPreferences(AppConfig.KEY_PREFS_NAME, 0).getString(AppConfig.KEY_UNIQ_ID, "");
     }
 
     public static boolean isAppLanguageHindi(Context context)

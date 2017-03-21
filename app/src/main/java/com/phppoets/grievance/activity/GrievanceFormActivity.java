@@ -49,7 +49,7 @@ import retrofit2.Response;
 
 public class GrievanceFormActivity extends AppCompatActivity {
     private static final String[] PERMISSIONS_READ_STORAGE = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
-    private static final int LIMIT = 5;
+    private static final int LIMIT = 1;
     PermissionsChecker checker;
     AutoCompleteTextView autoTextViewDepartment;
     AutoCompleteTextView autoTextViewSubDepartment;

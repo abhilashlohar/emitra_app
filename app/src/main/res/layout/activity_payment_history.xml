@@ -43,15 +43,27 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appbar">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvPaymentHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/appbar"
+
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:padding="5dp"
             android:scrollbars="none" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="visible" />
+        </RelativeLayout>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 

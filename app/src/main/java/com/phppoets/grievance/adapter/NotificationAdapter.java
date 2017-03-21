@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.phppoets.grievance.R;
-import com.phppoets.grievance.model.notification.Notification;
+import com.phppoets.grievance.model.notification.Result;
 import com.phppoets.grievance.support.UIUtils;
 import com.phppoets.grievance.utility.TSTypeface;
 
@@ -24,12 +24,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     SharedPreferences preferences;
     Context mcontext;
     ClickListener clickListener;
-    List<Notification> notificationList;
+    List<Result> notificationList;
 
     String option;
     private LayoutInflater inflater;
 
-    public NotificationAdapter(Context mcontext, List<Notification> notificationList) {
+    public NotificationAdapter(Context mcontext, List<Result> notificationList) {
 
         this.mcontext = mcontext;
         this.notificationList = notificationList;
@@ -47,9 +47,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.txtTitle.setText(notificationList.get(position).getTitle());
-        holder.txtDiscription.setText(notificationList.get(position).getDescription());
-        holder.txtTimestamp.setText(notificationList.get(position).getTimestamp());
+        holder.txtTitle.setText(notificationList.get(position).getButtonText());
+        holder.txtDiscription.setText(notificationList.get(position).getMessage());
+        holder.txtTimestamp.setText(notificationList.get(position).getTime());
         holder.rlMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -110,11 +110,6 @@ public class LoginActivity extends AppCompatActivity
 
     public void doLogin(final String mobile, final String password, final String gcm_id)
     {
-        /*dialog = new ProgressDialog(this);
-        dialog.setCancelable(false);
-        dialog.setMessage("Please wait ...");
-        dialog.show();*/
-
         Call<LoginResponse> loginResponCall = RestClient.getClient().
                 getLogin(mobile, password, gcm_id);
         loginResponCall.enqueue(new Callback<LoginResponse>()

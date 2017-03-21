@@ -52,6 +52,13 @@
             android:nestedScrollingEnabled="false"
             android:padding="5dp"
             android:scrollbars="none" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 

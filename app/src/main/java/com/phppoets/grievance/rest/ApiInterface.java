@@ -8,7 +8,9 @@ import com.phppoets.grievance.model.grievanceHistory.GrievanceHIstoryREsponse;
 import com.phppoets.grievance.model.grievanceHistoryDetail.GrievanceHIstoryDetailREsponse;
 import com.phppoets.grievance.model.login.LoginResponse;
 import com.phppoets.grievance.model.makepayment.MakePaymentRequestData;
+import com.phppoets.grievance.model.notification.NotificationResponse;
 import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
+import com.phppoets.grievance.model.paymentHistory.PaymentHistoryResponse;
 
 import java.util.Map;
 
@@ -108,11 +110,26 @@ public interface ApiInterface {
     );
 
     @Headers("Accept:application/json")
-    @GET("grievance/grievances/userGrievances")
+    @GET("grievance/grievances/grievanceHistory")
     Call<GrievanceHIstoryDetailREsponse> getGrievanceHistoryDetail(
             @Query("grievance_id")
             String grievance_id
     );
+
+    @Headers("Accept:application/json")
+    @GET("grievance/grievances/paymentDetails")
+    Call<PaymentHistoryResponse> getPaymentHistory(
+            @Query("login_id")
+            String login_id
+    );
+
+    @Headers("Accept:application/json")
+    @GET("grievance/grievances/notifications")
+    Call<NotificationResponse> getNotification(
+            @Query("login_id")
+            String login_id
+    );
+
     //    @FormUrlEncoded
     //    @POST("/jainthela/app/api/login")
     //    Call<LoginResult> getLLogin(@Field("email") String email, @Field("password") String password);
