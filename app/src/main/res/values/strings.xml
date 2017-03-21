@@ -67,6 +67,7 @@
     <string name="make_pay"> making online payment </string>
     <string name="make_pay_desc">using any Netbanking/ Credit Card/ Debit Card of various utility bills</string>
     <string name="regist_track_grievance"> Register and track your Grievance</string>
+    <string name="title">Title</string>
 
 
     <string-array name="lang_array">
