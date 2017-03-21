@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 
@@ -83,8 +84,16 @@ public class FCMNotificationsService extends FirebaseMessagingService
         if(!TextUtils.isEmpty(message) && !TextUtils.isEmpty(deepLink))
         {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context);
-            notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
-            notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
+            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            {
+                notificationBuilder.setSmallIcon(R.drawable.ic_image_white);
+                notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_image_white));
+            }
+            else
+            {
+                notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
+                notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
+            }
             notificationBuilder.setContentText(message);
             notificationBuilder.setContentTitle(context.getString(R.string.app_name));
             notificationBuilder.setStyle(new NotificationCompat.BigTextStyle(notificationBuilder).bigText(message)
