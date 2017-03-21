@@ -5,6 +5,7 @@ import com.phppoets.grievance.model.addImage.AddImage;
 import com.phppoets.grievance.model.base.BaseClass;
 import com.phppoets.grievance.model.department.Department;
 import com.phppoets.grievance.model.grievanceHistory.GrievanceHIstoryREsponse;
+import com.phppoets.grievance.model.grievanceHistoryDetail.GrievanceHIstoryDetailREsponse;
 import com.phppoets.grievance.model.login.LoginResponse;
 import com.phppoets.grievance.model.makepayment.MakePaymentRequestData;
 import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
@@ -104,6 +105,13 @@ public interface ApiInterface {
     Call<GrievanceHIstoryREsponse> getGrievanceHistory(
             @Query("login_id")
             String login_id
+    );
+
+    @Headers("Accept:application/json")
+    @GET("grievance/grievances/userGrievances")
+    Call<GrievanceHIstoryDetailREsponse> getGrievanceHistoryDetail(
+            @Query("grievance_id")
+            String grievance_id
     );
     //    @FormUrlEncoded
     //    @POST("/jainthela/app/api/login")

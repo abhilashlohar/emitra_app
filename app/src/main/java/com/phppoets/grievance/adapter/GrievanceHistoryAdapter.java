@@ -1,17 +1,18 @@
 package com.phppoets.grievance.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.phppoets.grievance.R;
 import com.phppoets.grievance.activity.GrievanceHistoryActivity;
+import com.phppoets.grievance.activity.GrievanceHistoryDetailActivity;
 import com.phppoets.grievance.model.grievanceHistory.Result;
 import com.phppoets.grievance.support.UIUtils;
 import com.phppoets.grievance.utility.TSTypeface;
@@ -47,10 +48,10 @@ public class GrievanceHistoryAdapter extends RecyclerView.Adapter<GrievanceHisto
         holder.txtDepartment.setText(paymentDetailList.get(position).getDescription());
         holder.txtDescription.setText(paymentDetailList.get(position).getDescription());
         holder.txtTimestamp.setText(paymentDetailList.get(position).getCreatedOn());
-        holder.Rl1.setOnClickListener(new View.OnClickListener() {
+        holder.Rlmain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mContext.startActivity(new Intent(mContext, GrievanceHistoryDetailActivity.class).putExtra("id", paymentDetailList.get(position).getId()));
             }
         });
     }
@@ -73,7 +74,7 @@ public class GrievanceHistoryAdapter extends RecyclerView.Adapter<GrievanceHisto
         public TextView txtSubject, txtDepartment, txtDescription, txtTimestamp;
         public ImageView imgNews, imgShare;
         public LinearLayout linearLayoutNews, llShare;
-        RelativeLayout Rl1;
+        LinearLayout Rlmain;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -83,7 +84,7 @@ public class GrievanceHistoryAdapter extends RecyclerView.Adapter<GrievanceHisto
             txtDescription = (TextView) itemView.findViewById(R.id.txtDescription);
 
             txtTimestamp = (TextView) itemView.findViewById(R.id.txtTimestamp);
-
+            Rlmain = (LinearLayout) itemView.findViewById(R.id.Rlmain);
 
             setFonts();
         }
