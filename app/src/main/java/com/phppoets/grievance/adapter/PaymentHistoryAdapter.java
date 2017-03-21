@@ -42,7 +42,7 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
     @Override
     public void onBindViewHolder(final PaymentHistoryAdapter.MyViewHolder holder, final int position) {
         holder.txtTimestamp.setText(paymentDetailList.get(position).getPaymentTime());
-        holder.txtAmountShow.setText(paymentDetailList.get(position).getAmount());
+        holder.txtAmountShow.setText(String.valueOf(paymentDetailList.get(position).getAmount()));
         holder.txtPNRNo.setText(paymentDetailList.get(position).getPrn());
         holder.txtResponse.setText(paymentDetailList.get(position).getResponce());
 

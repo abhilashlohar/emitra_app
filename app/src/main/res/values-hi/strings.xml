@@ -60,6 +60,16 @@
     <string name="english_lbl">English</string>
     <string name="hindi_lbl">हिंदी</string>
 
+    <string name="change_lang">भाषा बदलने के लिए यहां क्लिक करेंe</string>
+    <string name="click_noti"> सूचना देखने के लिए क्लिक करें</string>
+    <string name="got_it"> समझ गया</string>
+
+
+    <string name="fetch_util"> उपयोगिता बिल विवरण प्राप्त करें</string>
+    <string name="make_pay"> ऑनलाइन भुगतान करना </string>
+    <string name="make_pay_desc">विभिन्न उपयोगिता बिलों के किसी भी नेटबैंकिंग / क्रेडिट कार्ड / डेबिट कार्ड का उपयोग करना</string>
+    <string name="regist_track_grievance"> रजिस्टर करें और अपनी शिकायत को ट्रैक करें</string>
+
     <string-array name="lang_array">
         <item>English</item>
         <item>हिंदी</item>

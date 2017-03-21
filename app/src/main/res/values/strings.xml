@@ -40,7 +40,7 @@
     <string name="AttachFile">Attach File</string>
     <string name="Subject">Subject</string>
     <string name="Department">Department</string>
-    <string name="Grievance_Form">Grievance_Form</string>
+    <string name="Grievance_Form">Grievance Form</string>
     <string name="SubDepartment">Sub Department</string>
     <string name="Payment">Payment Services</string>
     <string name="Grievance">Grievance</string>
@@ -68,6 +68,10 @@
     <string name="make_pay_desc">using any Netbanking/ Credit Card/ Debit Card of various utility bills</string>
     <string name="regist_track_grievance"> Register and track your Grievance</string>
     <string name="title">Title</string>
+
+    <string name="change_lang">Click here to change language</string>
+    <string name="click_noti"> Click to see notification</string>
+    <string name="got_it"> GOT IT</string>
 
 
     <string-array name="lang_array">

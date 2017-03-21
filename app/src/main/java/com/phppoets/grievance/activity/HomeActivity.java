@@ -30,8 +30,12 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class HomeActivity extends AppCompatActivity
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener
 {
+    private static final String SHOWCASE_ID = "sequence_home";
     ImageView imgNotification;
     CardView cvPaymentService, cvPaymentHistroy, cvGrievanceServices, cvGrievanceHistroy;
     TextView txtGrievanceServices, txtPaymentService, txtPaymentHistory, txtGrievanceHistroy;
@@ -171,6 +175,8 @@ public class HomeActivity extends AppCompatActivity
         circlePageIndicator.setViewPager(viewpagerGallery);
         //viewpagerGallery.setScrollDurationFactor(4);
         autoPlayAdvertise();
+
+        presentShowcaseSequence();
     }
 
     private void autoPlayAdvertise()
@@ -215,5 +221,28 @@ public class HomeActivity extends AppCompatActivity
         //        }
         //        NavigationManager.openActivity(HomeActivity.this, HomeActivity.class);
         //        finish();
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+
+    }
+
+    private void presentShowcaseSequence()
+    {
+
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+
+        sequence.setConfig(config);
+
+        sequence.addSequenceItem(button, getResources().getString(R.string.change_lang), getResources().getString(R.string.got_it));
+
+        sequence.addSequenceItem(imgNotification, getResources().getString(R.string.click_noti), getResources().getString(R.string.got_it));
+
+        sequence.start();
     }
 }

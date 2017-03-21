@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.phppoets.grievance.Interface.DataTransferInterface;
@@ -71,6 +72,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
     ArrayList<Image> images;
     String departmentId, user_id;
     ImageView imageViewBack;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
         imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
         btnAccept = (Button) findViewById(R.id.btnAccept);
         btnAttachFile = (ImageButton) findViewById(R.id.btnAttachFile);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         rvImageView = (RecyclerView) findViewById(R.id.rvImageView);
         editSub = (EditText) findViewById(R.id.editSub);
         editDescription = (EditText) findViewById(R.id.editDescription);
@@ -143,7 +146,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
 
     public void addGrievances(final String subject, final String departmentId, final String description) {
 
-
+        progressBar.setVisibility(View.VISIBLE);
         Call<AddGrievance> loginResponCall = RestClient.getClient().
                 addGrievance(subject, description, departmentId, user_id);
         loginResponCall.enqueue(new Callback<AddGrievance>() {
@@ -151,6 +154,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
             public void onResponse(Call<AddGrievance> call, Response<AddGrievance> response) {
                 Log.d("LoginActivity", "Status Code = " + response.code());
                 //progressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     // request successful (status code 200, 201)
                     // dialog.dismiss();
@@ -167,6 +171,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AddGrievance> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
                 showMessage(getResources().getString(R.string.invalid_credential));
             }
         });
@@ -183,13 +188,14 @@ public class GrievanceFormActivity extends AppCompatActivity {
             RequestBody fileBody = RequestBody.create(MediaType.parse(images.get(0).path), file2);
             map.put("file\"; filename=\"cobalt." + types + "\"", fileBody);
         }
-
+        progressBar.setVisibility(View.VISIBLE);
         Call<AddImage> loginResponCall = RestClient.getClient().
                 addImage(map);
         loginResponCall.enqueue(new Callback<AddImage>() {
             @Override
             public void onResponse(Call<AddImage> call, Response<AddImage> response) {
-                Log.d("LoginActivity", "Status Code = " + response.code());
+                progressBar.setVisibility(View.GONE);
+                //Log.d("LoginActivity", "Status Code = " + response.code());
                 //progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     // request successful (status code 200, 201)
@@ -205,11 +211,13 @@ public class GrievanceFormActivity extends AppCompatActivity {
                     //Handle errors
                     showMessage(getResources().getString(R.string.invalid_credential));
                 }
+                finish();
             }
 
             @Override
             public void onFailure(Call<AddImage> call, Throwable t) {
                 showMessage(getResources().getString(R.string.invalid_credential));
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -271,13 +279,13 @@ public class GrievanceFormActivity extends AppCompatActivity {
 
     public void getDepartment() {
 
-
+        progressBar.setVisibility(View.VISIBLE);
         Call<Department> loginResponCall = RestClient.getClient().
                 getDepartment();
         loginResponCall.enqueue(new Callback<Department>() {
             @Override
             public void onResponse(Call<Department> call, Response<Department> response) {
-                Log.d("LoginActivity", "Status Code = " + response.code());
+                progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
 
                     department = response.body();
