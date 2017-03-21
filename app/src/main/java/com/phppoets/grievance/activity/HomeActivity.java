@@ -145,7 +145,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-
+                startActivity(new Intent(HomeActivity.this, GrievanceHistoryActivity.class));
             }
         });
 
@@ -154,7 +154,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-
+                startActivity(new Intent(HomeActivity.this, PaymentHistoryActivity.class));
             }
         });
 
@@ -169,7 +169,7 @@ public class HomeActivity extends AppCompatActivity
         NUM_PAGES = sliderList.size() + 1;
         viewpagerGallery.setAdapter(slideAdapter);
         circlePageIndicator.setViewPager(viewpagerGallery);
-        viewpagerGallery.setScrollDurationFactor(4);
+        //viewpagerGallery.setScrollDurationFactor(4);
         autoPlayAdvertise();
     }
 

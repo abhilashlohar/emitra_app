@@ -98,7 +98,7 @@ public class ObjectAdapter extends BaseAdapter implements Filterable {
 
             if (originalList != null && constraint != null) { // Check if the Original List and Constraint aren't null.
                 for (int i = 0; i < originalList.size(); i++) {
-                    if (originalList.get(i).contains(constraint)) { // Compare item in original list if it contains constraints.
+                    if (originalList.get(i).contains(constraint.toString().toLowerCase())) { // Compare item in original list if it contains constraints.
                         suggestions.add(originalList.get(i).toString()); // If TRUE add item in Suggestions.
                     }
                 }

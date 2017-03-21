@@ -3,6 +3,7 @@ package com.phppoets.grievance.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import com.phppoets.grievance.model.department.Result;
 import com.phppoets.grievance.permission.PermissionsActivity;
 import com.phppoets.grievance.permission.PermissionsChecker;
 import com.phppoets.grievance.rest.RestClient;
+import com.phppoets.grievance.support.AppConfig;
 import com.phppoets.grievance.support.UIUtils;
 
 import java.io.File;
@@ -61,11 +63,12 @@ public class GrievanceFormActivity extends AppCompatActivity {
     List<Result> departmentList;
     List<String> originalList;
     Button btnAccept;
+    SharedPreferences preferences;
     String subject, departmentName, description;
     AddGrievance addGrievance;
     AddImage addImage;
     ArrayList<Image> images;
-    String departmentId;
+    String departmentId, user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,9 @@ public class GrievanceFormActivity extends AppCompatActivity {
         autoTextViewDepartment = (AutoCompleteTextView) findViewById(R.id.autoTextViewDepartment);
         autoTextViewSubDepartment = (AutoCompleteTextView) findViewById(R.id.autoTextViewSubDepartment);
         checker = new PermissionsChecker(this);
+        preferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, MODE_PRIVATE);
+        user_id = preferences.getString(AppConfig.KEY_USER_ID, "");
+
         getDepartment();
         dtInterface = new DataTransferInterface() {
             @Override
@@ -131,7 +137,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
 
 
         Call<AddGrievance> loginResponCall = RestClient.getClient().
-                addGrievance(subject, description, departmentId);
+                addGrievance(subject, description, departmentId, user_id);
         loginResponCall.enqueue(new Callback<AddGrievance>() {
             @Override
             public void onResponse(Call<AddGrievance> call, Response<AddGrievance> response) {

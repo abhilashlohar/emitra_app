@@ -1,7 +1,6 @@
 package com.phppoets.grievance.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.phppoets.grievance.R;
-import com.phppoets.grievance.activity.PaymentDetailActivity;
-import com.phppoets.grievance.model.payment.PaymentService;
+import com.phppoets.grievance.activity.GrievanceHistoryActivity;
+import com.phppoets.grievance.model.grievanceHistory.Result;
 import com.phppoets.grievance.support.UIUtils;
 import com.phppoets.grievance.utility.TSTypeface;
 
@@ -26,13 +25,14 @@ import java.util.List;
 
 public class GrievanceHistoryAdapter extends RecyclerView.Adapter<GrievanceHistoryAdapter.MyViewHolder> {
     ClickListener clickListener;
-    private List<PaymentService> paymentDetailList;
+    private List<Result> paymentDetailList;
     private Activity mContext;
 
-    public GrievanceHistoryAdapter(Activity context, List<PaymentService> paymentDetailList) {
+    public GrievanceHistoryAdapter(GrievanceHistoryActivity context, List<Result> paymentDetailList) {
         this.mContext = context;
         this.paymentDetailList = paymentDetailList;
     }
+
 
     @Override
     public GrievanceHistoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -43,16 +43,14 @@ public class GrievanceHistoryAdapter extends RecyclerView.Adapter<GrievanceHisto
 
     @Override
     public void onBindViewHolder(final GrievanceHistoryAdapter.MyViewHolder holder, final int position) {
-        holder.txtSubject.setText(paymentDetailList.get(position).getServiceName());
-        holder.txtDepartment.setText(paymentDetailList.get(position).getServiceName());
-        holder.txtDescription.setText(paymentDetailList.get(position).getServiceName());
-        holder.txtTimestamp.setText(paymentDetailList.get(position).getServiceName());
+        holder.txtSubject.setText(paymentDetailList.get(position).getSubject());
+        holder.txtDepartment.setText(paymentDetailList.get(position).getDescription());
+        holder.txtDescription.setText(paymentDetailList.get(position).getDescription());
+        holder.txtTimestamp.setText(paymentDetailList.get(position).getCreatedOn());
         holder.Rl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext, PaymentDetailActivity.class).putExtra("data", paymentDetailList.get(position)
-                        .getSampleDataDec())
-                        .putExtra("id", "1"));
+
             }
         });
     }

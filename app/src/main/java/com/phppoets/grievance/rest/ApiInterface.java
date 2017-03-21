@@ -4,6 +4,7 @@ import com.phppoets.grievance.model.addForm.AddGrievance;
 import com.phppoets.grievance.model.addImage.AddImage;
 import com.phppoets.grievance.model.base.BaseClass;
 import com.phppoets.grievance.model.department.Department;
+import com.phppoets.grievance.model.grievanceHistory.GrievanceHIstoryREsponse;
 import com.phppoets.grievance.model.login.LoginResponse;
 import com.phppoets.grievance.model.makepayment.MakePaymentRequestData;
 import com.phppoets.grievance.model.notification.fetchdetail.FetchDetailResult;
@@ -20,8 +21,8 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
-public interface ApiInterface
-{
+
+public interface ApiInterface {
     @Headers("Accept:application/json")
     @GET("grievance/fetchDetail")
     Call<FetchDetailResult> getFatchDetail(
@@ -90,13 +91,20 @@ public interface ApiInterface
                                     @Field("description")
                                     String description,
                                     @Field("department_id")
-                                    String department_id);
+                                    String department_id, @Field("login_id")
+                                    String login_id);
 
     @Headers("Accept:application/json")
     @Multipart
     @POST("grievance/grievances/addFile")
     Call<AddImage> addImage(@PartMap Map<String, RequestBody> params);
 
+    @Headers("Accept:application/json")
+    @GET("grievance/grievances/userGrievances")
+    Call<GrievanceHIstoryREsponse> getGrievanceHistory(
+            @Query("login_id")
+            String login_id
+    );
     //    @FormUrlEncoded
     //    @POST("/jainthela/app/api/login")
     //    Call<LoginResult> getLLogin(@Field("email") String email, @Field("password") String password);
