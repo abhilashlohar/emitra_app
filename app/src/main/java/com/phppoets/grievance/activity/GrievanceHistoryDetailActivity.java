@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.phppoets.grievance.R;
@@ -20,16 +22,23 @@ public class GrievanceHistoryDetailActivity extends AppCompatActivity {
     GrievanceHIstoryDetailAdapter grievanceHIstoryDetailAdapter;
     GrievanceHIstoryDetailREsponse grievanceHIstoryDetailREsponse;
     String grievance_id;
-
+    ImageView imageViewBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievance_history_detail);
+        imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
         rvMyGrievanceDetail = (RecyclerView) findViewById(R.id.rvMyGrievanceDetail);
         if (getIntent().hasExtra("id")) {
             grievance_id = String.valueOf(getIntent().getIntExtra("id", 0));
         }
         getGrievanceHistoryDetail("1");
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void getGrievanceHistoryDetail(final String grievance_id) {

@@ -45,7 +45,12 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
         rvGrievanceHistroy.setLayoutManager((mLayoutManager));
         preferences = getSharedPreferences(AppConfig.KEY_PREFS_NAME, MODE_PRIVATE);
         user_id = preferences.getString(AppConfig.KEY_UNIQ_ID, "");
-
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         getGrievanceHistory(user_id);
     }
 

@@ -16,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.phppoets.grievance.Interface.DataTransferInterface;
@@ -69,6 +70,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
     AddImage addImage;
     ArrayList<Image> images;
     String departmentId, user_id;
+    ImageView imageViewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class GrievanceFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grievance_form);
         departmentList = new ArrayList<Result>();
         originalList = new ArrayList<String>();
+        imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
         btnAccept = (Button) findViewById(R.id.btnAccept);
         btnAttachFile = (ImageButton) findViewById(R.id.btnAttachFile);
         rvImageView = (RecyclerView) findViewById(R.id.rvImageView);
@@ -129,7 +132,12 @@ public class GrievanceFormActivity extends AppCompatActivity {
                 }
             }
         });
-
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 

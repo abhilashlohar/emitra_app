@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtPurpose"
+            android:id="@+id/txtResponse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -33,96 +33,58 @@
             android:textSize="20sp" />
 
 
-        <TextView
-            android:id="@+id/txtUsername"
+        <RelativeLayout
+            android:id="@+id/rlPnr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/PNR" />
+            android:layout_weight="1"
+            android:visibility="visible">
 
-        <TextView
-            android:id="@+id/txtMobile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/PNR" />
+            <TextView
+                android:id="@+id/txtpnr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PNR"
+                android:textColor="@color/colorPrimary" />
 
-        <TextView
-            android:id="@+id/txtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_markunread_black_24dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/PNR" />
+            <TextView
+                android:id="@+id/txtPNRNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/txtpnr"
+                android:layout_toRightOf="@+id/txtpnr" />
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rlAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:gravity="left">
 
-            <RelativeLayout
-                android:id="@+id/rlPnr"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:visibility="gone">
+                android:text="@string/Amount" />
 
-                <TextView
-                    android:id="@+id/txtpnr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/PNR"
-                    android:textColor="@color/colorPrimary" />
-
-                <TextView
-                    android:id="@+id/txtPNRNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_toEndOf="@+id/txtpnr"
-                    android:layout_toRightOf="@+id/txtpnr" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlAmount"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/txtAmountShow"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right">
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/txtAmount" />
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/txtAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Amount" />
-
-                <TextView
-                    android:id="@+id/txtAmountShow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/txtAmount" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/txtTimestamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:gravity="right"
+            android:gravity="left"
             android:text="10:00 AM" />
 
         <LinearLayout

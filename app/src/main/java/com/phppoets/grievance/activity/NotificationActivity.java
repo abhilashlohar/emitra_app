@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,18 +35,25 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
     Notification notification;
     NotificationResponse notificationResponse;
     ProgressBar progressBar;
-
+    ImageView imageViewBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
       /*  notificationList = new ArrayList<Notification>();
         for (int i = 0; i < timeStamp.length; i++) {
             notification = new Notification(title[i].toString(), description[i].toString(), timeStamp[i].toString());
             notificationList.add(notification);
         }*/
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -90,7 +98,7 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
     public void ItemClicked(View view, int position, String Tag) {
         switch (view.getId()) {
             case R.id.rlMain:
-                Toast.makeText(NotificationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(NotificationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

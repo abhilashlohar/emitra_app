@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity
     String username, mobileNo, email, location, password, confirmPassword;
     ProgressBar progressBar;
     SharedPreferences sharedPreferences;
+    ImageView imageViewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +45,13 @@ public class SignUpActivity extends AppCompatActivity
         editLocation = (EditText) findViewById(R.id.editLocation);
         editPass = (EditText) findViewById(R.id.editCreatePass);
         editConfirmPass = (EditText) findViewById(R.id.editConfirmPass);
+        imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         btnCreateAccount.setOnClickListener(new View.OnClickListener()
         {
             @Override
