@@ -2,6 +2,11 @@ package com.phppoets.grievance.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+
+import com.phppoets.grievance.utility.Utils;
+
+import java.util.Locale;
 
 /**
  * Created by vaibhav on 2/7/2017.
@@ -21,12 +26,38 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        Branch.getAutoInstance(this);
-//        Fabric.with(this, new Crashlytics());
-//        FontsOverride.setDefaultFont(this, "MONOSPACE","font/raleway_medium.ttf");
-//        /*Configuration dbConfiguration = new Configuration.Builder(this).setDatabaseName("xxx.db").create();
-//        ActiveAndroid.initialize(dbConfiguration);*/
-//        ActiveAndroid.initialize(this);
+        configureAppLanguage();
+    }
+
+    private void configureAppLanguage()
+    {
+        Locale locale = getResources().getConfiguration().locale;
+        if(Utils.isAppLanguageHindi(this) || locale.getLanguage().equals("hi"))
+        {
+            locale = new Locale("hi");
+        }
+        else
+        {
+            locale = new Locale("en");
+        }
+        changeAppLanguage(locale);
+        Utils.setCurrentLocale(locale);
+    }
+
+    public void changeAppLanguage(Locale locale)
+    {
+        Utils.setCurrentLocale(locale);
+        Configuration configuration = new Configuration();
+        configuration.setLayoutDirection(locale);
+        configuration.locale = locale;
+        getBaseContext().getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        configureAppLanguage();
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
+import com.phppoets.grievance.activity.PaymentDetailActivity;
 import com.phppoets.grievance.utility.Utils;
 
 /**
@@ -37,20 +38,9 @@ public class NavigationManager
                                    .scheme(deepLink.substring(0, deepLink.indexOf(":")))
                                    .build();
 
-        if(uri.getAuthority().equals("event"))
-        {
-            // intent = new Intent(context, EventDetailsActivity.class);
-            int length = deepLink.lastIndexOf("&");
-            if(length == -1)
-            {
-                length = deepLink.length();
-            }
-            uri = uri.buildUpon().appendQueryParameter(Utils.ID, deepLink.substring(deepLink.lastIndexOf("id=") + 3, length)).build();
-        }
-
         if(uri.getAuthority().equals("paymentDetail"))
         {
-            // intent = new Intent(context, EventDetailsActivity.class);
+            intent = new Intent(context, PaymentDetailActivity.class);
             int length = deepLink.lastIndexOf("&");
             if(length == -1)
             {

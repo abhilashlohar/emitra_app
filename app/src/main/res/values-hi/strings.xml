@@ -1,8 +1,4 @@
 <resources>
-    <string name="app_name">Grievance</string>
-    <string name="showcase_main_title">Showcase Sample</string>
-    <string name="showcase_main_message">Press the button showcased to change the showcase\\\'s style</string>
-
     <string name="submit">Submit</string>
     <string name="go_settings">GO Settings</string>
     <string name="internet_msg">Internet Connection Required.</string>
@@ -10,7 +6,7 @@
     <string name="Edit">Edit</string>
     <string name="Remove">Remove</string>
     <string name="confirm">CONFIRM</string>
-    <string name="ok">OK</string>
+    <string name="ok">ठीक</string>
     <string name="cancel">CANCEL</string>
     <string name="showCaseSample">Show Case Sample</string>
     <string name="hintUserName">User Name</string>
@@ -28,7 +24,7 @@
     <string name="Location">Location</string>
     <string name="password_length">*password must be atleast 8 characters</string>
     <string name="Notification">Notification</string>
-    <string name="Home">Home</string>
+    <string name="Home">होम</string>
     <string name="download_pdf">Download pdf</string>
     <string name="no_connection">Looks like you\\\'re having a network issue! You\\\'ve got to be connected to use this.</string>
     <string name="help">Help</string>
@@ -50,17 +46,15 @@
     <string name="Make_Payment">Make Payment</string>
     <string name="NoRecordsFound">No Records Found</string>
     <string name="select_payment_service">Select Payment Service</string>
-    <string name="PaymentHistory">Payment History</string>
+    <string name="PaymentHistroy">Payment History</string>
     <string name="GrievanceServices">Grievance Services</string>
     <string name="GrievanceHistroy">Grievance Histroy</string>
     <string name="noDataFound">No Data Found</string>
-    <string name="GrievanceHistroyDetail">Grievance History Detail</string>
-    <string name="PaymentHistroy">Payment History</string>
     <string name="invalid_credential">Invalid credential</string>
-    <string name="click_to_pay">Click here to avail the payment facilities</string>
-    <string name="click_to_pay_history">Click here to see the payment history</string>
-    <string name="click_to_griev">Click here to register your grievance</string>
-    <string name="click_to_griev_history">Click here to see your grievance history</string>
+    <string name="click_to_pay">भुगतान सुविधाओं का लाभ उठाने के लिए यहां क्लिक करें</string>
+    <string name="click_to_pay_history">भुगतान इतिहास देखने के लिए यहां क्लिक करें</string>
+    <string name="click_to_griev">अपनी शिकायत दर्ज करने के लिए यहां क्लिक करें</string>
+    <string name="click_to_griev_history">अपनी शिकायत इतिहास देखने के लिए यहां क्लिक करें</string>
     <string name="english_lbl">English</string>
     <string name="hindi_lbl">हिंदी</string>
 

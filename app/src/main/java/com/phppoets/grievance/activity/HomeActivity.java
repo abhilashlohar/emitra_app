@@ -13,22 +13,30 @@ import android.widget.TextView;
 
 import com.phppoets.grievance.R;
 import com.phppoets.grievance.adapter.SlideAdapter;
+import com.phppoets.grievance.application.MyApplication;
+import com.phppoets.grievance.manager.NavigationManager;
 import com.phppoets.grievance.support.CirclePageIndicator;
 import com.phppoets.grievance.support.SmoothViewPager;
 import com.phppoets.grievance.support.UIUtils;
 import com.phppoets.grievance.utility.TSTypeface;
+import com.phppoets.grievance.utility.Utils;
+
+import org.honorato.multistatetogglebutton.MultiStateToggleButton;
+import org.honorato.multistatetogglebutton.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomeActivity extends AppCompatActivity
 {
-    ImageView imgNotification, imgMore;
+    ImageView imgNotification;
     CardView cvPaymentService, cvPaymentHistroy, cvGrievanceServices, cvGrievanceHistroy;
     TextView txtGrievanceServices, txtPaymentService, txtPaymentHistory, txtGrievanceHistroy;
     SmoothViewPager viewpagerGallery;
+    MultiStateToggleButton button;
     CirclePageIndicator circlePageIndicator;
 
     SlideAdapter slideAdapter;
@@ -43,7 +51,6 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         imgNotification = (ImageView) findViewById(R.id.imgNotification);
-        imgMore = (ImageView) findViewById(R.id.imgMore);
         cvPaymentService = (CardView) findViewById(R.id.cvPaymentService);
         cvGrievanceServices = (CardView) findViewById(R.id.cvGrievanceServices);
         cvPaymentHistroy = (CardView) findViewById(R.id.cvPaymentHistroy);
@@ -94,14 +101,28 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        imgMore.setOnClickListener(new View.OnClickListener()
+        button = (MultiStateToggleButton) this.findViewById(R.id.mstb_multi_id);
+        button.setOnValueChangedListener(new ToggleButton.OnValueChangedListener()
         {
             @Override
-            public void onClick(View view)
+            public void onValueChanged(int position)
             {
-                startActivity(new Intent(HomeActivity.this, PdfActivity.class));
+                if(position == 0)
+                {
+                    ((MyApplication) getApplication()).changeAppLanguage(new Locale("en"));
+                    Utils.saveAppLanguage(HomeActivity.this, "English");
+                }
+                else
+                {
+                    ((MyApplication) getApplication()).changeAppLanguage(new Locale("hi"));
+                    Utils.saveAppLanguage(HomeActivity.this, "Hindi");
+                }
+
+                NavigationManager.openActivity(HomeActivity.this, HomeActivity.class);
+                finish();
             }
         });
+
         cvGrievanceServices.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -178,5 +199,21 @@ public class HomeActivity extends AppCompatActivity
                 handler.post(Update);
             }
         }, 0, 5000);
+    }
+
+    public void change()
+    {
+        //        if(options[which].equals(getString(R.string.english_lbl)))
+        //        {
+        //            ((MyApplication) getApplication()).changeAppLanguage(new Locale("en"));
+        //            Utils.saveAppLanguage(HomeActivity.this, "English");
+        //        }
+        //        else if(options[which].equals(getString(R.string.hindi_lbl)))
+        //        {
+        //            ((MyApplication) getApplication()).changeAppLanguage(new Locale("hi"));
+        //            Utils.saveAppLanguage(HomeActivity.this, "Hindi");
+        //        }
+        //        NavigationManager.openActivity(HomeActivity.this, HomeActivity.class);
+        //        finish();
     }
 }

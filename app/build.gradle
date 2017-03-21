@@ -47,5 +47,6 @@ dependencies {
     compile 'com.github.deano2390:MaterialShowcaseView:1.1.0@aar'
     compile project(path: ':material_dialogs_library')
     compile 'com.github.myinnos:AwesomeImagePicker:1.0'
+    compile 'org.honorato.multistatetogglebutton:multistatetogglebutton:0.2.2'
 }
 apply plugin: 'com.google.gms.google-services'
