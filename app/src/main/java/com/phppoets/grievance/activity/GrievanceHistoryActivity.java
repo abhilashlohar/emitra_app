@@ -20,7 +20,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GrievanceHistoryActivity extends AppCompatActivity {
+public class GrievanceHistoryActivity extends AppCompatActivity
+{
     RecyclerView rvGrievanceHistroy;
     ImageView imageViewBack;
     GrievanceHistoryAdapter grievanceHistoryAdapter;
@@ -29,7 +30,8 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
     String user_id;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grievance_history);
         rvGrievanceHistroy = (RecyclerView) findViewById(R.id.rvGrievanceHistroy);
@@ -45,7 +47,8 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
         getGrievanceHistory(user_id);
     }
 
-    public void getGrievanceHistory(final String login_id) {
+    public void getGrievanceHistory(final String login_id)
+    {
         /*dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
         dialog.setMessage("Please wait ...");
@@ -53,18 +56,24 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
 
         Call<GrievanceHIstoryREsponse> loginResponCall = RestClient.getClient().
                 getGrievanceHistory(login_id);
-        loginResponCall.enqueue(new Callback<GrievanceHIstoryREsponse>() {
+        loginResponCall.enqueue(new Callback<GrievanceHIstoryREsponse>()
+        {
             @Override
-            public void onResponse(Call<GrievanceHIstoryREsponse> call, Response<GrievanceHIstoryREsponse> response) {
+            public void onResponse(Call<GrievanceHIstoryREsponse> call, Response<GrievanceHIstoryREsponse> response)
+            {
                 Log.d("LoginActivity", "Status Code = " + response.code());
 
-                if (response.isSuccessful()) {
+                if(response.isSuccessful())
+                {
                     // request successful (status code 200, 201)
                     // dialog.dismiss();
                     grievanceHIstoryREsponse = response.body();
-                    grievanceHistoryAdapter = new GrievanceHistoryAdapter(GrievanceHistoryActivity.this, grievanceHIstoryREsponse.getResult());
+                    grievanceHistoryAdapter =
+                            new GrievanceHistoryAdapter(GrievanceHistoryActivity.this, grievanceHIstoryREsponse.getResult());
                     rvGrievanceHistroy.setAdapter(grievanceHistoryAdapter);
-                } else {
+                }
+                else
+                {
                     // response received but request not successful (like 400,401,403 etc)
                     //Handle errors
                     showMessage(getResources().getString(R.string.invalid_credential));
@@ -72,13 +81,15 @@ public class GrievanceHistoryActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<GrievanceHIstoryREsponse> call, Throwable t) {
+            public void onFailure(Call<GrievanceHIstoryREsponse> call, Throwable t)
+            {
                 showMessage(getResources().getString(R.string.invalid_credential));
             }
         });
     }
 
-    public void showMessage(String msg) {
+    public void showMessage(String msg)
+    {
         Toast.makeText(GrievanceHistoryActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 }

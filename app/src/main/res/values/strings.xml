@@ -63,6 +63,11 @@
     <string name="click_to_griev_history">Click here to see your grievance history</string>
     <string name="english_lbl">English</string>
     <string name="hindi_lbl">हिंदी</string>
+    <string name="fetch_util"> Fetch Due Utility Bill Details</string>
+    <string name="make_pay"> making online payment </string>
+    <string name="make_pay_desc">using any Netbanking/ Credit Card/ Debit Card of various utility bills</string>
+    <string name="regist_track_grievance"> Register and track your Grievance</string>
+
 
     <string-array name="lang_array">
         <item>English</item>

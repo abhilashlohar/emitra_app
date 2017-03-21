@@ -10,7 +10,8 @@ import com.stephentuso.welcome.WelcomeConfiguration;
  * Created by stephentuso on 10/5/16.
  */
 
-public class StartActivity extends WelcomeActivity {
+public class StartActivity extends WelcomeActivity
+{
 
     /*@Override
     protected WelcomeConfiguration configuration() {
@@ -22,26 +23,20 @@ public class StartActivity extends WelcomeActivity {
                 .build();
     }*/
 
-
     @Override
-    protected WelcomeConfiguration configuration() {
-        return new WelcomeConfiguration.Builder(this)
-                .defaultBackgroundColor(R.color.pink_background)
-                .page(new TitlePage(R.drawable.ic_style_white,
-                        "Title")
-                )
-                .page(new BasicPage(R.drawable.ic_image_white,
-                        "Header",
-                        "More text.")
-                        .background(R.color.blue_background)
-                )
-                .page(new BasicPage(R.drawable.ic_style_white,
-                        "Lorem ipsum",
-                        "dolor sit amet.")
-                )
-                .swipeToDismiss(true)
-                .build();
+    protected WelcomeConfiguration configuration()
+    {
+        return new WelcomeConfiguration.Builder(this).defaultBackgroundColor(R.color.colorPrimaryDark)
+                                                     .page(new TitlePage(R.drawable.ic_style_white,
+                                                                         getResources().getString(R.string.fetch_util)))
+                                                     .page(new BasicPage(R.drawable.ic_image_white,
+                                                                         getResources().getString(R.string.make_pay),
+                                                                         getResources().getString(R.string.make_pay_desc)).background(
+                                                             R.color.colorPrimary))
+                                                     .page(new BasicPage(R.drawable.ic_style_white,
+                                                                         getResources().getString(R.string.Grievance),
+                                                                         getResources().getString(R.string.regist_track_grievance)))
+                                                     .swipeToDismiss(true)
+                                                     .build();
     }
-
-
 }

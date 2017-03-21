@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-import com.phppoets.grievance.activity.PaymentDetailActivity;
+import com.phppoets.grievance.activity.PaymentHistoryActivity;
 import com.phppoets.grievance.utility.Utils;
 
 /**
@@ -40,7 +40,7 @@ public class NavigationManager
 
         if(uri.getAuthority().equals("paymentDetail"))
         {
-            intent = new Intent(context, PaymentDetailActivity.class);
+            intent = new Intent(context, PaymentHistoryActivity.class);
             int length = deepLink.lastIndexOf("&");
             if(length == -1)
             {
